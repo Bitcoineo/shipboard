@@ -188,10 +188,10 @@ export default function CommandPalette({
                           key={item.id}
                           onClick={item.action}
                           onMouseEnter={() => setActiveIndex(idx)}
-                          className={`flex w-full items-center justify-between px-4 py-2 text-left text-sm ${
+                          className={`flex w-full items-center justify-between border-l-2 px-4 py-2 text-left text-sm transition-colors duration-100 ${
                             idx === activeIndex
-                              ? "bg-[#F8F8F7] text-[#2D2D2D]"
-                              : "text-[#6B6B6B]"
+                              ? "border-[#4F46E5] bg-[#F8F8F7] pl-[calc(1rem-2px)] text-[#2D2D2D]"
+                              : "border-transparent text-[#6B6B6B]"
                           }`}
                         >
                           <span>{item.label}</span>

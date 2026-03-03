@@ -420,7 +420,7 @@ export default function BoardColumns({
           {columnsData.map((col) => (
             <div
               key={col.id}
-              className="flex w-80 flex-shrink-0 flex-col"
+              className="group/col flex w-80 flex-shrink-0 flex-col"
             >
               {/* Column Header */}
               <div className="flex items-center justify-between px-3 py-2.5">
@@ -450,7 +450,7 @@ export default function BoardColumns({
                       setMenuOpenId(menuOpenId === col.id ? null : col.id)
                     }
                     title="Column options"
-                    className="rounded p-1 text-[#A3A3A3] hover:bg-[#F0F0EF] hover:text-[#6B6B6B]"
+                    className="rounded p-1 text-[#A3A3A3] opacity-0 transition-all duration-150 group-hover/col:opacity-100 hover:bg-[#F0F0EF] hover:text-[#6B6B6B]"
                   >
                     <svg
                       className="h-4 w-4"
@@ -508,7 +508,7 @@ export default function BoardColumns({
                     <button
                       onClick={() => { setAddingTaskColId(col.id); setNewTaskTitle(""); }}
                       title="Add task"
-                      className="flex h-8 w-8 items-center justify-center rounded-full border border-dashed border-[#EEEEED] text-[#A3A3A3] hover:border-[#4F46E5] hover:text-[#4F46E5]"
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-dashed border-[#EEEEED] text-[#A3A3A3] transition-all duration-150 hover:border-[#4F46E5] hover:text-[#4F46E5]"
                     >
                       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -539,7 +539,7 @@ export default function BoardColumns({
                         <button
                           onClick={() => handleAddTask(col.id)}
                           disabled={addTaskLoading || !newTaskTitle.trim()}
-                          className="rounded bg-[#4F46E5] px-3 py-1 text-sm font-medium text-white hover:bg-[#4338CA] disabled:opacity-50"
+                          className="rounded bg-[#4F46E5] px-3 py-1 text-sm font-medium text-white transition-all duration-150 hover:bg-[#4338CA] hover:shadow-md active:scale-[0.97] disabled:opacity-50"
                         >
                           {addTaskLoading ? "Adding..." : "Add"}
                         </button>
@@ -548,7 +548,7 @@ export default function BoardColumns({
                             setAddingTaskColId(null);
                             setNewTaskTitle("");
                           }}
-                          className="rounded px-3 py-1 text-sm text-[#6B6B6B] hover:bg-[#F0F0EF]"
+                          className="rounded px-3 py-1 text-sm text-[#6B6B6B] transition-all duration-150 hover:bg-[#F0F0EF] hover:shadow-sm active:scale-[0.97]"
                         >
                           Cancel
                         </button>
@@ -560,7 +560,7 @@ export default function BoardColumns({
                         setAddingTaskColId(col.id);
                         setNewTaskTitle("");
                       }}
-                      className="w-full rounded py-1.5 text-sm text-[#A3A3A3] hover:bg-[#F0F0EF] hover:text-[#6B6B6B]"
+                      className="w-full rounded py-1.5 text-sm text-[#A3A3A3] transition-all duration-150 hover:bg-[#F0F0EF] hover:text-[#6B6B6B] hover:border-l-2 hover:border-[#4F46E5]/40 hover:pl-2"
                     >
                       + Task
                     </button>
@@ -589,7 +589,7 @@ export default function BoardColumns({
                   <button
                     type="submit"
                     disabled={addLoading}
-                    className="rounded bg-[#4F46E5] px-3 py-1.5 text-sm font-medium text-white hover:bg-[#4338CA] disabled:opacity-50"
+                    className="rounded bg-[#4F46E5] px-3 py-1.5 text-sm font-medium text-white transition-all duration-150 hover:bg-[#4338CA] hover:shadow-md active:scale-[0.97] disabled:opacity-50"
                   >
                     {addLoading ? "Adding..." : "Add"}
                   </button>
@@ -599,7 +599,7 @@ export default function BoardColumns({
                       setShowAddColumn(false);
                       setNewColumnName("");
                     }}
-                    className="rounded px-3 py-1.5 text-sm text-[#6B6B6B] hover:bg-[#F0F0EF]"
+                    className="rounded px-3 py-1.5 text-sm text-[#6B6B6B] transition-all duration-150 hover:bg-[#F0F0EF] hover:shadow-sm active:scale-[0.97]"
                   >
                     Cancel
                   </button>
@@ -609,7 +609,7 @@ export default function BoardColumns({
               <button
                 onClick={() => setShowAddColumn(true)}
                 title="Add column"
-                className="flex w-80 items-center gap-2 rounded-md border border-dashed border-[#EEEEED] px-3 py-2.5 text-sm text-[#A3A3A3] hover:border-[#2D2D2D]/20 hover:text-[#6B6B6B]"
+                className="flex w-80 items-center gap-2 rounded-md border border-dashed border-[#EEEEED] px-3 py-2.5 text-sm text-[#A3A3A3] transition-all duration-150 hover:border-solid hover:border-[#2D2D2D]/20 hover:bg-[#4F46E5]/5 hover:text-[#6B6B6B]"
               >
                 <svg
                   className="h-4 w-4"
@@ -642,19 +642,19 @@ export default function BoardColumns({
       </DndContext>
 
       {selectedIds.size > 0 && (
-        <div className="animate-slide-up fixed bottom-6 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-lg border border-[#EEEEED] bg-white px-4 py-2.5 shadow-lg">
+        <div className="animate-slide-up fixed bottom-6 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-lg border border-[#EEEEED] bg-white/95 backdrop-blur-sm px-4 py-2.5 shadow-lg">
           <span className="text-sm font-medium text-[#2D2D2D]">
             {selectedIds.size} task{selectedIds.size !== 1 ? "s" : ""} selected
           </span>
           <button
             onClick={handleBulkDelete}
-            className="rounded px-3 py-1.5 text-sm font-medium text-[#EB5757] hover:bg-[#FBE9E9]"
+            className="rounded px-3 py-1.5 text-sm font-medium text-[#EB5757] transition-all duration-150 hover:bg-[#FBE9E9] active:scale-[0.97]"
           >
             Delete
           </button>
           <button
             onClick={() => setSelectedIds(new Set())}
-            className="rounded px-3 py-1.5 text-sm text-[#6B6B6B] hover:bg-[#F0F0EF]"
+            className="rounded px-3 py-1.5 text-sm text-[#6B6B6B] transition-all duration-150 hover:bg-[#F0F0EF] active:scale-[0.97]"
           >
             Clear
           </button>

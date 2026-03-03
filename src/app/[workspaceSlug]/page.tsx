@@ -4,7 +4,6 @@ import { getWorkspaceBySlug } from "@/lib/workspaces";
 import { hasPermission } from "@/lib/permissions";
 import { getWorkspaceBoards } from "@/lib/boards";
 import BoardList from "./board-list";
-import DeleteWorkspace from "./delete-workspace";
 
 export default async function WorkspacePage({
   params,
@@ -22,8 +21,6 @@ export default async function WorkspacePage({
 
   const { data: boards } = await getWorkspaceBoards(workspace.id);
 
-  const isOwner = member.role === "owner";
-
   return (
     <div>
       <h1 className="text-3xl font-bold text-[#2D2D2D]">{workspace.name}</h1>
@@ -33,13 +30,6 @@ export default async function WorkspacePage({
           workspaceSlug={params.workspaceSlug}
         />
       </div>
-
-      {isOwner && (
-        <DeleteWorkspace
-          workspaceName={workspace.name}
-          workspaceSlug={params.workspaceSlug}
-        />
-      )}
     </div>
   );
 }

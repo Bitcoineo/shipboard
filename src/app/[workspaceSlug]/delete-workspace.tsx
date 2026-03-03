@@ -43,12 +43,12 @@ export default function DeleteWorkspace({
       {!showConfirm ? (
         <button
           onClick={() => setShowConfirm(true)}
-          className="mt-4 rounded-md border border-[#EB5757]/30 px-4 py-2 text-sm font-medium text-[#EB5757] transition-colors hover:bg-[#FBE9E9]"
+          className="mt-4 text-sm text-[#A3A3A3] underline decoration-[#D3D1CB] underline-offset-2 transition-colors hover:text-[#EB5757] hover:decoration-[#EB5757]"
         >
-          Delete workspace
+          Delete this workspace
         </button>
       ) : (
-        <div className="mt-4 rounded-md border border-[#F5D0D0] bg-[#FBE9E9] p-4">
+        <div className="mt-4 animate-fade-in-up rounded-md border border-[#F5D0D0] bg-[#FBE9E9] p-4">
           <p className="text-sm text-[#2D2D2D]">
             Type the workspace name to confirm.
           </p>
@@ -64,7 +64,7 @@ export default function DeleteWorkspace({
             <button
               onClick={handleDelete}
               disabled={confirmText !== workspaceName || deleting}
-              className="rounded-md bg-[#EB5757] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#D14343] disabled:opacity-50"
+              className="rounded-md bg-[#EB5757] px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-[#D14343] hover:shadow-md active:scale-[0.97] disabled:opacity-50"
             >
               {deleting ? "Deleting..." : "Delete forever"}
             </button>
@@ -74,7 +74,7 @@ export default function DeleteWorkspace({
                 setConfirmText("");
                 setError("");
               }}
-              className="rounded-md border border-[#EEEEED] px-4 py-2 text-sm text-[#6B6B6B] transition-colors hover:bg-white"
+              className="rounded-md border border-[#EEEEED] px-4 py-2 text-sm text-[#6B6B6B] transition-all duration-150 hover:bg-white hover:shadow-sm active:scale-[0.97]"
             >
               Cancel
             </button>

@@ -92,10 +92,10 @@ export default function TaskCard({
           onClick();
         }
       }}
-      className={`group relative cursor-pointer rounded-md border px-4 py-3 transition-colors ${
+      className={`group relative cursor-pointer rounded-md border px-4 py-3 transition-all duration-150 ${
         isSelected
-          ? "border-[#4F46E5] bg-[#EEF2FF]"
-          : "border-[#EEEEED] bg-white hover:bg-[#F8F8F7] hover:shadow-sm"
+          ? "border-[#4F46E5] bg-[#EEF2FF] shadow-sm"
+          : "border-transparent bg-white shadow-sm hover:bg-[#F8F8F7] hover:shadow-md hover:border-[#4F46E5]/20 hover:scale-[1.01] active:scale-[0.99] active:shadow-sm"
       } ${isDragging ? "shadow-md scale-[1.02]" : ""} ${
         task.priority !== "none" ? `border-l-2 ${PRIORITY_BORDER_COLORS[task.priority] || ""}` : ""
       }`}

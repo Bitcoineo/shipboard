@@ -59,7 +59,7 @@ function LoginForm() {
           <button
             type="button"
             onClick={() => signIn("google", { callbackUrl })}
-            className="flex w-full items-center justify-center gap-2 rounded-md border border-[#EEEEED] bg-white px-4 py-2.5 text-sm font-medium text-[#2D2D2D] transition-colors hover:bg-[#F8F8F7]"
+            className="flex w-full items-center justify-center gap-2 rounded-md border border-[#EEEEED] bg-white px-4 py-2.5 text-sm font-medium text-[#2D2D2D] transition-all duration-150 hover:bg-[#F8F8F7] hover:shadow-sm active:scale-[0.97]"
           >
             <svg className="h-4 w-4" viewBox="0 0 24 24">
               <path
@@ -102,7 +102,7 @@ function LoginForm() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 block w-full border-0 border-b border-[#EEEEED] bg-transparent px-0 py-2 text-sm text-[#2D2D2D] placeholder-[#A3A3A3] focus:border-[#4F46E5] focus:outline-none focus:ring-0"
+                className="mt-1 block w-full border-0 border-b border-[#EEEEED] bg-transparent px-0 py-2 text-sm text-[#2D2D2D] placeholder-[#A3A3A3] transition-all duration-150 focus:border-[#4F46E5] focus:outline-none focus:ring-0"
                 placeholder="you@example.com"
               />
             </div>
@@ -117,7 +117,7 @@ function LoginForm() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 block w-full border-0 border-b border-[#EEEEED] bg-transparent px-0 py-2 text-sm text-[#2D2D2D] placeholder-[#A3A3A3] focus:border-[#4F46E5] focus:outline-none focus:ring-0"
+                className="mt-1 block w-full border-0 border-b border-[#EEEEED] bg-transparent px-0 py-2 text-sm text-[#2D2D2D] placeholder-[#A3A3A3] transition-all duration-150 focus:border-[#4F46E5] focus:outline-none focus:ring-0"
                 placeholder="••••••••"
               />
             </div>
@@ -129,7 +129,7 @@ function LoginForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#4338CA] focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:ring-offset-2 disabled:opacity-50 active:scale-[0.98]"
+              className="w-full rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white transition-all duration-150 hover:bg-[#4338CA] hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:ring-offset-2 disabled:opacity-50 active:scale-[0.97]"
             >
               {loading ? "One moment..." : "Continue"}
             </button>

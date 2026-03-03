@@ -67,7 +67,7 @@ export default function WorkspaceList({
         <p className="mt-1 text-sm text-[#6B6B6B]">A workspace is where your team lives. Start one.</p>
         <button
           onClick={() => setShowForm(true)}
-          className="mt-6 rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#4338CA]"
+          className="mt-6 rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white transition-all duration-150 hover:bg-[#4338CA] hover:shadow-md active:scale-[0.97]"
         >
           Create workspace
         </button>
@@ -82,7 +82,7 @@ export default function WorkspaceList({
         {!showForm && (
           <button
             onClick={() => setShowForm(true)}
-            className="rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#4338CA]"
+            className="rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white transition-all duration-150 hover:bg-[#4338CA] hover:shadow-md active:scale-[0.97]"
           >
             New workspace
           </button>
@@ -101,7 +101,7 @@ export default function WorkspaceList({
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="mt-1 block w-full rounded-md border border-[#EEEEED] px-3 py-2.5 text-sm text-[#2D2D2D] focus:border-[#4F46E5] focus:outline-none focus:ring-2 focus:ring-[#4F46E5]"
+              className="mt-1 block w-full rounded-md border border-[#EEEEED] px-3 py-2.5 text-sm text-[#2D2D2D] transition-all duration-150 focus:border-[#4F46E5] focus:outline-none focus:ring-2 focus:ring-[#4F46E5]"
               placeholder="e.g. Marketing, Engineering"
               autoFocus
             />
@@ -110,14 +110,14 @@ export default function WorkspaceList({
           <button
             type="submit"
             disabled={loading}
-            className="rounded-md bg-[#4F46E5] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#4338CA] disabled:opacity-50"
+            className="rounded-md bg-[#4F46E5] px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-[#4338CA] hover:shadow-md active:scale-[0.97] disabled:opacity-50"
           >
             {loading ? "Creating..." : "Create"}
           </button>
           <button
             type="button"
             onClick={() => { setShowForm(false); setError(""); setName(""); }}
-            className="rounded-md border border-[#EEEEED] px-4 py-2.5 text-sm text-[#6B6B6B] transition-colors hover:bg-[#F8F8F7]"
+            className="rounded-md border border-[#EEEEED] px-4 py-2.5 text-sm text-[#6B6B6B] transition-all duration-150 hover:bg-[#F8F8F7] hover:shadow-sm active:scale-[0.97]"
           >
             Cancel
           </button>
@@ -129,7 +129,7 @@ export default function WorkspaceList({
           <Link
             key={ws.id}
             href={`/${ws.slug}`}
-            className="animate-fade-in-up group rounded-md border border-[#EEEEED] bg-white p-6 transition-all duration-150 hover:bg-[#F8F8F7]"
+            className="animate-fade-in-up group rounded-md border border-[#EEEEED] bg-white p-6 shadow-sm transition-all duration-150 hover:bg-[#F8F8F7] hover:shadow-md hover:-translate-y-0.5 hover:border-[#D3D1CB]"
             style={{ animationDelay: `${i * 50}ms` }}
           >
             <div className="flex items-start justify-between">
