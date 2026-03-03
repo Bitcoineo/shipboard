@@ -183,6 +183,37 @@ body {
   animation-delay: 5000ms;
 }
 
+/* ── How it works: step + connector animations ─────────────────────── */
+
+@keyframes stepIn {
+  0%   { opacity: 0; transform: scale(0.8); }
+  70%  { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes connectorDraw {
+  from { stroke-dashoffset: 100; }
+  to   { stroke-dashoffset: 0; }
+}
+
+.hiw-step-1 { opacity: 0; animation: stepIn 400ms ease-out both; animation-delay: 1500ms; }
+.hiw-step-2 { opacity: 0; animation: stepIn 400ms ease-out both; animation-delay: 2500ms; }
+.hiw-step-3 { opacity: 0; animation: stepIn 400ms ease-out both; animation-delay: 3500ms; }
+
+.hiw-connector-1 {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: connectorDraw 600ms ease-out both;
+  animation-delay: 2000ms;
+}
+
+.hiw-connector-2 {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: connectorDraw 600ms ease-out both;
+  animation-delay: 3000ms;
+}
+
 /* Command palette entrance */
 @keyframes cmdPaletteIn {
   from { opacity: 0; transform: scale(0.98); }

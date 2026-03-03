@@ -157,22 +157,72 @@ export default async function Home() {
         </div>
 
         {/* How it works */}
-        <section className="mx-auto mt-16 max-w-3xl">
+        <section className="mx-auto mt-16 w-full max-w-3xl px-4">
           <h2 className="text-center text-2xl font-bold text-[#2D2D2D]">How it works</h2>
-          <div className="mt-10 grid gap-10 sm:grid-cols-3">
-            {[
-              { step: 1, title: "Create a workspace", desc: "Invite your team. Everyone sees the same boards." },
-              { step: 2, title: "Add boards and tasks", desc: "Drag tasks between columns as work progresses." },
-              { step: 3, title: "Ship with clarity", desc: "Always know what\u2019s done, what\u2019s stuck, and who\u2019s on it." },
-            ].map((s) => (
-              <div key={s.step} className="text-center">
-                <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#EEF2FF] text-sm font-bold text-[#4F46E5]">
-                  {s.step}
+
+          {/* Desktop layout */}
+          <div className="relative mt-10 hidden sm:block">
+            {/* Connector lines layer */}
+            <div className="absolute left-0 right-0 top-5 z-0 flex items-center px-[calc(16.67%)]">
+              <div className="flex-1" />
+              <svg className="flex-1" viewBox="0 0 100 2" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" y1="1" x2="100" y2="1" className="hiw-connector-1" stroke="#4F46E5" strokeWidth="2" strokeDasharray="4 4" pathLength="100" />
+              </svg>
+              <div className="flex-1" />
+              <svg className="flex-1" viewBox="0 0 100 2" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" y1="1" x2="100" y2="1" className="hiw-connector-2" stroke="#4F46E5" strokeWidth="2" strokeDasharray="4 4" pathLength="100" />
+              </svg>
+              <div className="flex-1" />
+            </div>
+
+            {/* Steps */}
+            <div className="relative z-10 grid grid-cols-3 gap-10">
+              {[
+                { step: 1, title: "Create a workspace", desc: "Invite your team. Everyone sees the same boards." },
+                { step: 2, title: "Add boards and tasks", desc: "Drag tasks between columns as work progresses." },
+                { step: 3, title: "Ship with clarity", desc: "Always know what\u2019s done, what\u2019s stuck, and who\u2019s on it." },
+              ].map((s) => (
+                <div key={s.step} className={`hiw-step-${s.step} text-center`}>
+                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#4F46E5] bg-white text-sm font-bold text-[#4F46E5]">
+                    {s.step}
+                  </div>
+                  <h3 className="mt-4 text-[15px] font-semibold text-[#2D2D2D]">{s.title}</h3>
+                  <p className="mt-2 text-sm text-[#6B6B6B]">{s.desc}</p>
                 </div>
-                <h3 className="mt-4 text-[15px] font-semibold text-[#2D2D2D]">{s.title}</h3>
-                <p className="mt-2 text-sm text-[#6B6B6B]">{s.desc}</p>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile layout */}
+          <div className="relative mt-10 sm:hidden">
+            {/* Vertical connector line */}
+            <div className="absolute left-5 top-10 z-0 flex h-[calc(100%-80px)] flex-col items-center">
+              <svg className="h-1/2 w-[2px]" viewBox="0 0 2 100" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="1" y1="0" x2="1" y2="100" className="hiw-connector-1" stroke="#4F46E5" strokeWidth="2" strokeDasharray="4 4" pathLength="100" />
+              </svg>
+              <svg className="h-1/2 w-[2px]" viewBox="0 0 2 100" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="1" y1="0" x2="1" y2="100" className="hiw-connector-2" stroke="#4F46E5" strokeWidth="2" strokeDasharray="4 4" pathLength="100" />
+              </svg>
+            </div>
+
+            {/* Steps stacked */}
+            <div className="relative z-10 space-y-10">
+              {[
+                { step: 1, title: "Create a workspace", desc: "Invite your team. Everyone sees the same boards." },
+                { step: 2, title: "Add boards and tasks", desc: "Drag tasks between columns as work progresses." },
+                { step: 3, title: "Ship with clarity", desc: "Always know what\u2019s done, what\u2019s stuck, and who\u2019s on it." },
+              ].map((s) => (
+                <div key={s.step} className={`hiw-step-${s.step} flex gap-4`}>
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-[#4F46E5] bg-white text-sm font-bold text-[#4F46E5]">
+                    {s.step}
+                  </div>
+                  <div>
+                    <h3 className="text-[15px] font-semibold text-[#2D2D2D]">{s.title}</h3>
+                    <p className="mt-1 text-sm text-[#6B6B6B]">{s.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
