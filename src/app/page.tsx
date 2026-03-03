@@ -42,7 +42,7 @@ export default async function Home() {
             Your team&apos;s work. One board.
           </h1>
           <p className="mt-4 text-lg text-[#787774]">
-            See every task, who owns it, and what&apos;s blocking it — without a single status meeting.
+            See what&apos;s happening, who&apos;s on it, and what&apos;s next.
           </p>
           <div className="mt-8 flex items-center justify-center gap-4">
             <Link
@@ -60,68 +60,95 @@ export default async function Home() {
           </div>
 
           {/* Kanban animation mockup */}
-          <div className="mx-auto mt-12 max-w-2xl rounded-lg border border-[#E8E5E0] bg-white p-4 shadow-sm">
-            <div className="flex gap-3">
-              {/* To Do column */}
-              <div className="kanban-col-1 flex-1 opacity-0">
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-[#787774]">To Do</p>
-                <div className="flex flex-col gap-2">
-                  <div className="kanban-card-1 kanban-card-source-fade rounded-md border border-[#E8E5E0] p-2.5 opacity-0">
-                    <div className="mb-1.5 h-1 w-4 rounded-full bg-[#F97316]" />
-                    <div className="h-2 w-full rounded bg-[#E8E5E0]" />
-                    <div className="mt-1 h-2 w-3/4 rounded bg-[#E8E5E0]" />
+          <div className="mx-auto mt-12 max-w-2xl rounded-xl border border-[#E8E5E0] bg-white p-4 shadow-sm sm:p-6">
+            <div className="flex gap-2 sm:gap-3">
+              {/* ── To Do column ── */}
+              <div className="kb-col-1 flex-1 rounded-lg bg-[#F7F7F5] p-2 opacity-0 sm:p-3">
+                <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[#787774] sm:text-xs">To Do</p>
+                <div className="flex flex-col gap-1.5 sm:gap-2">
+                  {/* Card 1 — will lift + move to In Progress at 3s */}
+                  <div className="kb-card-move-source rounded-md border border-[#E8E5E0] bg-white p-2 shadow-sm opacity-0 sm:p-2.5">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="mb-1.5 h-1 w-4 rounded-full bg-[#F97316]" />
+                        <div className="h-1.5 w-full rounded bg-[#E8E5E0] sm:h-2" />
+                        <div className="mt-1 h-1.5 w-3/4 rounded bg-[#E8E5E0] sm:h-2" />
+                      </div>
+                      <div className="ml-2 h-4 w-4 flex-shrink-0 rounded-full bg-[#D3D1CB] sm:h-5 sm:w-5" />
+                    </div>
                   </div>
-                  <div className="kanban-card-2 rounded-md border border-[#E8E5E0] p-2.5 opacity-0">
+                  {/* Card 2 — priority shifts yellow→red at 3.8s */}
+                  <div className="kb-card-2 rounded-md border border-[#E8E5E0] bg-white p-2 shadow-sm opacity-0 sm:p-2.5">
+                    <div className="mb-1.5 h-1 w-4 rounded-full bg-[#EAB308] kb-priority-shift" />
+                    <div className="h-1.5 w-full rounded bg-[#E8E5E0] sm:h-2" />
+                    <div className="mt-1 h-1.5 w-2/3 rounded bg-[#E8E5E0] sm:h-2" />
+                  </div>
+                  {/* Card 3 */}
+                  <div className="kb-card-3 rounded-md border border-[#E8E5E0] bg-white p-2 shadow-sm opacity-0 sm:p-2.5">
                     <div className="mb-1.5 h-1 w-4 rounded-full bg-[#EF4444]" />
-                    <div className="h-2 w-full rounded bg-[#E8E5E0]" />
-                    <div className="mt-1 h-2 w-2/3 rounded bg-[#E8E5E0]" />
-                  </div>
-                  <div className="kanban-card-3 rounded-md border border-[#E8E5E0] p-2.5 opacity-0">
-                    <div className="mb-1.5 h-1 w-4 rounded-full bg-[#EAB308]" />
-                    <div className="h-2 w-full rounded bg-[#E8E5E0]" />
+                    <div className="h-1.5 w-full rounded bg-[#E8E5E0] sm:h-2" />
+                    <div className="mt-1 h-1.5 w-1/2 rounded bg-[#E8E5E0] sm:h-2" />
+                    <div className="mt-1 h-1.5 w-3/4 rounded bg-[#E8E5E0] sm:h-2" />
                   </div>
                 </div>
               </div>
 
-              {/* In Progress column */}
-              <div className="kanban-col-2 flex-1 opacity-0">
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-[#787774]">In Progress</p>
-                <div className="flex flex-col gap-2">
-                  <div className="kanban-card-4 rounded-md border border-[#E8E5E0] p-2.5 opacity-0">
-                    <div className="mb-1.5 h-1 w-4 rounded-full bg-[#3B82F6]" />
-                    <div className="h-2 w-full rounded bg-[#E8E5E0]" />
-                    <div className="mt-1 h-2 w-1/2 rounded bg-[#E8E5E0]" />
+              {/* ── In Progress column ── */}
+              <div className="kb-col-2 kb-idle-pulse flex-1 rounded-lg bg-[#F7F7F5] p-2 opacity-0 sm:p-3">
+                <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[#787774] sm:text-xs">In Progress</p>
+                <div className="flex flex-col gap-1.5 sm:gap-2">
+                  {/* Card 4 — avatar pops in at 4.2s */}
+                  <div className="kb-card-4 rounded-md border border-[#E8E5E0] bg-white p-2 shadow-sm opacity-0 sm:p-2.5">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="mb-1.5 h-1 w-4 rounded-full bg-[#3B82F6]" />
+                        <div className="h-1.5 w-full rounded bg-[#E8E5E0] sm:h-2" />
+                        <div className="mt-1 h-1.5 w-1/2 rounded bg-[#E8E5E0] sm:h-2" />
+                      </div>
+                      <div className="kb-avatar-pop ml-2 h-4 w-4 flex-shrink-0 rounded-full bg-[#2383E2] sm:h-5 sm:w-5" />
+                    </div>
                   </div>
-                  <div className="kanban-card-appear rounded-md border-2 border-transparent p-2.5">
-                    <div className="mb-1.5 h-1 w-4 rounded-full bg-[#F97316]" />
-                    <div className="h-2 w-full rounded bg-[#E8E5E0]" />
-                    <div className="mt-1 h-2 w-3/4 rounded bg-[#E8E5E0]" />
+                  {/* Card 5 */}
+                  <div className="kb-card-5 rounded-md border border-[#E8E5E0] bg-white p-2 shadow-sm opacity-0 sm:p-2.5">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="mb-1.5 h-1 w-4 rounded-full bg-[#EAB308]" />
+                        <div className="h-1.5 w-full rounded bg-[#E8E5E0] sm:h-2" />
+                        <div className="mt-1 h-1.5 w-2/3 rounded bg-[#E8E5E0] sm:h-2" />
+                      </div>
+                      <div className="ml-2 h-4 w-4 flex-shrink-0 rounded-full bg-[#D3D1CB] sm:h-5 sm:w-5" />
+                    </div>
                   </div>
-                  <div className="kanban-card-5 rounded-md border border-[#E8E5E0] p-2.5 opacity-0">
-                    <div className="mb-1.5 h-1 w-4 rounded-full bg-[#EAB308]" />
-                    <div className="h-2 w-full rounded bg-[#E8E5E0]" />
-                    <div className="mt-1 h-2 w-2/3 rounded bg-[#E8E5E0]" />
+                  {/* Ghost card — moves in from To Do at 3.5s */}
+                  <div className="kb-card-move-target rounded-md border border-[#2383E2] bg-[#EBF5FF] p-2 shadow-sm sm:p-2.5">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="mb-1.5 h-1 w-4 rounded-full bg-[#F97316]" />
+                        <div className="h-1.5 w-full rounded bg-[#E8E5E0] sm:h-2" />
+                        <div className="mt-1 h-1.5 w-3/4 rounded bg-[#E8E5E0] sm:h-2" />
+                      </div>
+                      <div className="ml-2 h-4 w-4 flex-shrink-0 rounded-full bg-[#D3D1CB] sm:h-5 sm:w-5" />
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Done column */}
-              <div className="kanban-col-3 flex-1 opacity-0">
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-[#787774]">Done</p>
-                <div className="flex flex-col gap-2">
-                  <div className="kanban-card-6 relative rounded-md border border-[#E8E5E0] p-2.5 opacity-0">
+              {/* ── Done column ── */}
+              <div className="kb-col-3 flex-1 rounded-lg bg-[#F7F7F5] p-2 opacity-0 sm:p-3">
+                <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[#787774] sm:text-xs">Done</p>
+                <div className="flex flex-col gap-1.5 sm:gap-2">
+                  {/* Card 6 — check + strikethrough */}
+                  <div className="kb-card-6 relative rounded-md border border-[#E8E5E0] bg-white p-2 shadow-sm opacity-0 sm:p-2.5">
                     <div className="mb-1.5 h-1 w-4 rounded-full bg-[#10B981]" />
-                    <div className="h-2 w-full rounded bg-[#E8E5E0]" />
-                    <div className="kanban-check absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-[#10B981]">
-                      <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor">
+                    <div className="relative">
+                      <div className="h-1.5 w-full rounded bg-[#E8E5E0] sm:h-2" />
+                      <div className="kb-strikethrough" />
+                    </div>
+                    <div className="kb-check absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#10B981] sm:h-5 sm:w-5">
+                      <svg className="h-2.5 w-2.5 text-white sm:h-3 sm:w-3" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                       </svg>
                     </div>
-                  </div>
-                  <div className="kanban-card-7 rounded-md border border-[#E8E5E0] p-2.5 opacity-0">
-                    <div className="mb-1.5 h-1 w-4 rounded-full bg-[#10B981]" />
-                    <div className="h-2 w-full rounded bg-[#E8E5E0]" />
-                    <div className="mt-1 h-2 w-1/2 rounded bg-[#E8E5E0]" />
                   </div>
                 </div>
               </div>

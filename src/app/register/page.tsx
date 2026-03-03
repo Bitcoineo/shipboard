@@ -58,7 +58,14 @@ function RegisterForm() {
     <div className="flex min-h-screen items-center justify-center bg-white px-4">
       <div className="w-full max-w-sm animate-fade-in-up">
         <div className="mb-8 text-center">
-          <h1 className="text-2xl font-bold text-[#37352F]">ShipBoard</h1>
+          <Link href="/" className="inline-flex items-center gap-1.5">
+            <svg className="h-5 w-5 text-[#2383E2]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="8" width="10" height="32" rx="2" fill="currentColor" opacity="0.3" />
+              <rect x="19" y="8" width="10" height="24" rx="2" fill="currentColor" opacity="0.6" />
+              <rect x="34" y="8" width="10" height="16" rx="2" fill="currentColor" />
+            </svg>
+            <span className="text-2xl font-bold text-[#37352F]">ShipBoard</span>
+          </Link>
           <p className="mt-1 text-sm text-[#787774]">Create your account. It&apos;s free.</p>
         </div>
 

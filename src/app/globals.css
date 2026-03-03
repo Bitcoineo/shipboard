@@ -51,85 +51,136 @@ body {
   animation: modalIn 200ms ease-out both;
 }
 
-/* Kanban hero animation */
-@keyframes kanbanColumnIn {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ── Kanban hero animation ─────────────────────────────────────────── */
+
+/* Phase 1: columns slide up */
+@keyframes kbColIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes kanbanCardDrop {
-  from {
-    opacity: 0;
-    transform: translateY(-16px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(3px);
-  }
-  80% {
-    transform: translateY(-1px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Phase 2: cards drop with overshoot bounce */
+@keyframes kbCardDrop {
+  0%   { opacity: 0; transform: translateY(-18px); }
+  55%  { opacity: 1; transform: translateY(4px); }
+  75%  { transform: translateY(-2px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes kanbanCardFadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
+/* Phase 3: card lifts before moving */
+@keyframes kbCardLift {
+  0%   { transform: scale(1); box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+  100% { transform: scale(1.03); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
 }
 
-@keyframes kanbanCardAppear {
-  from {
-    opacity: 0;
-    border-color: transparent;
-  }
-  to {
-    opacity: 1;
-    border-color: #2383E2;
-  }
+/* Phase 3: card slides from col 1 to col 2 */
+@keyframes kbCardFadeOut {
+  0%   { opacity: 1; transform: scale(1.03); }
+  100% { opacity: 0; transform: scale(1); height: 0; padding: 0; margin: 0; border-width: 0; overflow: hidden; }
 }
 
-@keyframes kanbanCheckPop {
-  from { transform: scale(0); }
-  60% { transform: scale(1.2); }
-  to { transform: scale(1); }
+@keyframes kbCardAppear {
+  0%   { opacity: 0; transform: translateY(-8px); max-height: 0; }
+  40%  { opacity: 1; max-height: 80px; }
+  70%  { transform: translateY(2px); }
+  100% { opacity: 1; transform: translateY(0); max-height: 80px; }
 }
 
-.kanban-col-1 { animation: kanbanColumnIn 400ms ease-out both; animation-delay: 0ms; }
-.kanban-col-2 { animation: kanbanColumnIn 400ms ease-out both; animation-delay: 200ms; }
-.kanban-col-3 { animation: kanbanColumnIn 400ms ease-out both; animation-delay: 400ms; }
-
-.kanban-card-1 { animation: kanbanCardDrop 350ms ease-out both; animation-delay: 700ms; }
-.kanban-card-2 { animation: kanbanCardDrop 350ms ease-out both; animation-delay: 800ms; }
-.kanban-card-3 { animation: kanbanCardDrop 350ms ease-out both; animation-delay: 900ms; }
-.kanban-card-4 { animation: kanbanCardDrop 350ms ease-out both; animation-delay: 1000ms; }
-.kanban-card-5 { animation: kanbanCardDrop 350ms ease-out both; animation-delay: 1100ms; }
-.kanban-card-6 { animation: kanbanCardDrop 350ms ease-out both; animation-delay: 1200ms; }
-.kanban-card-7 { animation: kanbanCardDrop 350ms ease-out both; animation-delay: 1300ms; }
-
-.kanban-card-source-fade {
-  animation: kanbanCardFadeOut 300ms ease-out both;
-  animation-delay: 1800ms;
+/* Phase 3: priority color change yellow→red */
+@keyframes kbPriorityShift {
+  0%   { background-color: #EAB308; }
+  100% { background-color: #EF4444; }
 }
 
-.kanban-card-appear {
+/* Phase 3: avatar pop-in */
+@keyframes kbAvatarPop {
+  0%   { transform: scale(0); }
+  70%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Phase 3: strikethrough line draw on Done card */
+@keyframes kbStrikethrough {
+  0%   { width: 0; }
+  100% { width: 100%; }
+}
+
+/* Phase 3: green check pop */
+@keyframes kbCheckPop {
+  0%   { transform: scale(0); }
+  60%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Phase 4: subtle idle pulse on In Progress column */
+@keyframes kbIdlePulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.92; }
+}
+
+/* ── Phase 1: columns (0-1.2s, 300ms stagger) ── */
+.kb-col-1 { animation: kbColIn 500ms ease-out both; animation-delay: 0ms; }
+.kb-col-2 { animation: kbColIn 500ms ease-out both; animation-delay: 300ms; }
+.kb-col-3 { animation: kbColIn 500ms ease-out both; animation-delay: 600ms; }
+
+/* ── Phase 2: cards drop (1.2-2.6s, 150ms stagger) ── */
+/* To Do: 3 cards */
+.kb-card-1 { animation: kbCardDrop 400ms ease-out both; animation-delay: 1200ms; }
+.kb-card-2 { animation: kbCardDrop 400ms ease-out both; animation-delay: 1350ms; }
+.kb-card-3 { animation: kbCardDrop 400ms ease-out both; animation-delay: 1500ms; }
+/* In Progress: 2 cards */
+.kb-card-4 { animation: kbCardDrop 400ms ease-out both; animation-delay: 1650ms; }
+.kb-card-5 { animation: kbCardDrop 400ms ease-out both; animation-delay: 1800ms; }
+/* Done: 1 card + check */
+.kb-card-6 { animation: kbCardDrop 400ms ease-out both; animation-delay: 1950ms; }
+.kb-check  { transform: scale(0); animation: kbCheckPop 300ms ease-out both; animation-delay: 2400ms; }
+
+/* ── Phase 3: activity (3-5s) ── */
+/* Card lifts in To Do col (3s), then fades out (3.4s) */
+.kb-card-move-source {
+  animation:
+    kbCardDrop 400ms ease-out both 1200ms,
+    kbCardLift 300ms ease-out both 3000ms,
+    kbCardFadeOut 350ms ease-in both 3400ms;
+}
+
+/* Ghost card appears in In Progress (3.5s) */
+.kb-card-move-target {
   opacity: 0;
-  animation: kanbanCardAppear 400ms ease-out both;
-  animation-delay: 1800ms;
+  max-height: 0;
+  animation: kbCardAppear 500ms ease-out both;
+  animation-delay: 3500ms;
 }
 
-.kanban-check {
+/* Priority dot changes yellow→red (3.8s) */
+.kb-priority-shift {
+  animation: kbPriorityShift 400ms ease-in-out both;
+  animation-delay: 3800ms;
+}
+
+/* Avatar pops in on In Progress card (4.2s) */
+.kb-avatar-pop {
   transform: scale(0);
-  animation: kanbanCheckPop 300ms ease-out both;
-  animation-delay: 2600ms;
+  animation: kbAvatarPop 250ms ease-out both;
+  animation-delay: 4200ms;
+}
+
+/* Strikethrough on Done card text (4.5s) */
+.kb-strikethrough {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 1.5px;
+  background: #9B9A97;
+  width: 0;
+  animation: kbStrikethrough 400ms ease-out both;
+  animation-delay: 4500ms;
+}
+
+/* ── Phase 4: idle pulse (5s+) ── */
+.kb-idle-pulse {
+  animation: kbIdlePulse 3s ease-in-out infinite;
+  animation-delay: 5000ms;
 }
 
 /* Floating bar slide-up */
