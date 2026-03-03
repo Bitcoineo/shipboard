@@ -45,9 +45,9 @@ const PRESET_COLORS = [
 ];
 
 const ROLE_BADGE: Record<string, string> = {
-  owner: "bg-gray-900 text-white",
-  admin: "bg-gray-200 text-gray-700",
-  member: "bg-gray-100 text-gray-600",
+  owner: "bg-[#37352F] text-white",
+  admin: "bg-[#F7F7F5] text-[#37352F] border border-[#E8E5E0]",
+  member: "bg-[#F7F7F5] text-[#787774]",
 };
 
 export default function MemberList({
@@ -197,20 +197,20 @@ export default function MemberList({
           {!showInvite ? (
             <button
               onClick={() => setShowInvite(true)}
-              className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+              className="rounded-md bg-[#2383E2] px-4 py-2 text-sm font-medium text-white hover:bg-[#1B6EC2]"
             >
               Invite Member
             </button>
           ) : (
-            <div className="rounded-lg border border-gray-200 bg-white p-4">
-              <h3 className="text-sm font-semibold text-gray-900">
+            <div className="rounded-md border border-[#E8E5E0] bg-white p-4">
+              <h3 className="text-sm font-semibold text-[#37352F]">
                 Invite a new member
               </h3>
               <form onSubmit={handleInvite} className="mt-3 flex items-end gap-3">
                 <div className="flex-1">
                   <label
                     htmlFor="invite-email"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-[#37352F]"
                   >
                     Email
                   </label>
@@ -220,7 +220,7 @@ export default function MemberList({
                     required
                     value={inviteEmail}
                     onChange={(e) => setInviteEmail(e.target.value)}
-                    className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                    className="mt-1 block w-full rounded-md border border-[#E8E5E0] px-3 py-2 text-sm focus:border-[#2383E2] focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
                     placeholder="colleague@example.com"
                     autoFocus
                   />
@@ -228,7 +228,7 @@ export default function MemberList({
                 <div>
                   <label
                     htmlFor="invite-role"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-[#37352F]"
                   >
                     Role
                   </label>
@@ -238,7 +238,7 @@ export default function MemberList({
                     onChange={(e) =>
                       setInviteRole(e.target.value as "member" | "admin")
                     }
-                    className="mt-1 block rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                    className="mt-1 block rounded-md border border-[#E8E5E0] px-3 py-2 text-sm focus:border-[#2383E2] focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
                   >
                     <option value="member">Member</option>
                     <option value="admin">Admin</option>
@@ -247,7 +247,7 @@ export default function MemberList({
                 <button
                   type="submit"
                   disabled={inviteLoading}
-                  className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50"
+                  className="rounded-md bg-[#2383E2] px-4 py-2 text-sm font-medium text-white hover:bg-[#1B6EC2] disabled:opacity-50"
                 >
                   {inviteLoading ? "Sending..." : "Send Invite"}
                 </button>
@@ -258,26 +258,26 @@ export default function MemberList({
                     setInviteError("");
                     setInviteLink("");
                   }}
-                  className="rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
+                  className="rounded-md border border-[#E8E5E0] px-4 py-2 text-sm text-[#787774] hover:bg-[#F7F7F5]"
                 >
                   Cancel
                 </button>
               </form>
               {inviteError && (
-                <p className="mt-2 text-sm text-red-600">{inviteError}</p>
+                <p className="mt-2 text-sm text-[#EB5757]">{inviteError}</p>
               )}
               {inviteLink && (
-                <div className="mt-3 rounded-lg bg-green-50 border border-green-200 p-3">
-                  <p className="text-sm text-green-800">
+                <div className="mt-3 rounded-md bg-[#E8F5F1] border border-[#C2E5DC] p-3">
+                  <p className="text-sm text-[#4DAB9A]">
                     Invite created! Share this link:
                   </p>
                   <div className="mt-1 flex items-center gap-2">
-                    <code className="flex-1 truncate rounded bg-white px-2 py-1 text-xs text-gray-700 border border-green-200">
+                    <code className="flex-1 truncate rounded bg-white px-2 py-1 text-xs text-[#37352F] border border-[#C2E5DC]">
                       {inviteLink}
                     </code>
                     <button
                       onClick={() => copyToClipboard(inviteLink)}
-                      className="rounded bg-gray-900 px-3 py-1 text-xs font-medium text-white hover:bg-gray-800"
+                      className="rounded bg-[#2383E2] px-3 py-1 text-xs font-medium text-white hover:bg-[#1B6EC2]"
                     >
                       Copy
                     </button>
@@ -292,9 +292,9 @@ export default function MemberList({
       {/* Pending Invites */}
       {isAdmin && pendingInvites.length > 0 && (
         <div>
-          <h3 className="text-sm font-semibold text-gray-900">
+          <h3 className="text-sm font-semibold text-[#37352F]">
             Pending Invites
-            <span className="ml-2 text-xs font-normal text-gray-400">
+            <span className="ml-2 text-xs font-normal text-[#9B9A97]">
               {pendingInvites.length}
             </span>
           </h3>
@@ -302,13 +302,13 @@ export default function MemberList({
             {pendingInvites.map((invite) => (
               <div
                 key={invite.id}
-                className="flex items-center justify-between rounded-lg border border-gray-200 bg-white px-4 py-3"
+                className="flex items-center justify-between rounded-md border border-[#E8E5E0] bg-white px-4 py-3"
               >
                 <div>
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-medium text-[#37352F]">
                     {invite.email}
                   </p>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-[#9B9A97]">
                     Invited as{" "}
                     <span className="capitalize">{invite.role}</span>
                     {" by "}
@@ -319,7 +319,7 @@ export default function MemberList({
                 </div>
                 <button
                   onClick={() => handleCancelInvite(invite.id)}
-                  className="rounded px-3 py-1.5 text-sm text-red-600 hover:bg-red-50"
+                  className="rounded px-3 py-1.5 text-sm text-[#EB5757] hover:bg-[#FBE9E9]"
                 >
                   Cancel
                 </button>
@@ -331,9 +331,9 @@ export default function MemberList({
 
       {/* Members List */}
       <div>
-        <h3 className="text-sm font-semibold text-gray-900">
+        <h3 className="text-sm font-semibold text-[#37352F]">
           Members
-          <span className="ml-2 text-xs font-normal text-gray-400">
+          <span className="ml-2 text-xs font-normal text-[#9B9A97]">
             {members.length}
           </span>
         </h3>
@@ -341,25 +341,25 @@ export default function MemberList({
           {members.map((m) => (
             <div
               key={m.id}
-              className="flex items-center justify-between rounded-lg border border-gray-200 bg-white px-4 py-3"
+              className="flex items-center justify-between rounded-md border border-[#E8E5E0] bg-white px-4 py-3"
             >
               <div className="flex items-center gap-3">
                 <div
                   className="flex h-9 w-9 items-center justify-center rounded-full text-sm font-medium text-white"
                   style={{
-                    backgroundColor: m.user.avatarColor || "#374151",
+                    backgroundColor: m.user.avatarColor || "#2383E2",
                   }}
                 >
                   {(m.user.name || m.user.email)[0].toUpperCase()}
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-medium text-[#37352F]">
                     {m.user.name || m.user.email}
                     {m.user.id === currentUserId && (
-                      <span className="ml-1 text-xs text-gray-400">(you)</span>
+                      <span className="ml-1 text-xs text-[#9B9A97]">(you)</span>
                     )}
                   </p>
-                  <p className="text-xs text-gray-400">{m.user.email}</p>
+                  <p className="text-xs text-[#9B9A97]">{m.user.email}</p>
                 </div>
               </div>
 
@@ -369,7 +369,7 @@ export default function MemberList({
                   <select
                     value={m.role}
                     onChange={(e) => handleRoleChange(m.id, e.target.value)}
-                    className="rounded border border-gray-200 px-2 py-1 text-xs text-gray-700 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                    className="rounded border border-[#E8E5E0] px-2 py-1 text-xs text-[#37352F] focus:border-[#2383E2] focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
                   >
                     <option value="admin">Admin</option>
                     <option value="member">Member</option>
@@ -394,13 +394,13 @@ export default function MemberList({
                           <button
                             onClick={() => handleRemoveMember(m.id)}
                             disabled={removingId === m.id}
-                            className="rounded bg-red-600 px-2 py-1 text-xs font-medium text-white hover:bg-red-700 disabled:opacity-50"
+                            className="rounded bg-[#EB5757] px-2 py-1 text-xs font-medium text-white hover:bg-[#D14343] disabled:opacity-50"
                           >
                             {removingId === m.id ? "..." : "Confirm"}
                           </button>
                           <button
                             onClick={() => setConfirmRemoveId(null)}
-                            className="rounded px-2 py-1 text-xs text-gray-500 hover:bg-gray-100"
+                            className="rounded px-2 py-1 text-xs text-[#787774] hover:bg-[#EFEFEF]"
                           >
                             Cancel
                           </button>
@@ -408,7 +408,7 @@ export default function MemberList({
                       ) : (
                         <button
                           onClick={() => setConfirmRemoveId(m.id)}
-                          className="rounded px-2 py-1 text-xs text-red-600 hover:bg-red-50"
+                          className="rounded px-2 py-1 text-xs text-[#EB5757] hover:bg-[#FBE9E9]"
                         >
                           Remove
                         </button>
@@ -425,16 +425,16 @@ export default function MemberList({
       {isAdmin && (
         <div>
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-gray-900">
+            <h3 className="text-sm font-semibold text-[#37352F]">
               Labels
-              <span className="ml-2 text-xs font-normal text-gray-400">
+              <span className="ml-2 text-xs font-normal text-[#9B9A97]">
                 {labels.length}
               </span>
             </h3>
             {!showLabelForm && (
               <button
                 onClick={() => setShowLabelForm(true)}
-                className="rounded-lg bg-gray-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-800"
+                className="rounded-md bg-[#2383E2] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#1B6EC2]"
               >
                 New Label
               </button>
@@ -444,13 +444,13 @@ export default function MemberList({
           {showLabelForm && (
             <form
               onSubmit={handleCreateLabel}
-              className="mt-3 rounded-lg border border-gray-200 bg-white p-4"
+              className="mt-3 rounded-md border border-[#E8E5E0] bg-white p-4"
             >
               <div className="flex items-end gap-3">
                 <div className="flex-1">
                   <label
                     htmlFor="label-name"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-[#37352F]"
                   >
                     Name
                   </label>
@@ -460,7 +460,7 @@ export default function MemberList({
                     required
                     value={labelName}
                     onChange={(e) => setLabelName(e.target.value)}
-                    className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                    className="mt-1 block w-full rounded-md border border-[#E8E5E0] px-3 py-2 text-sm focus:border-[#2383E2] focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
                     placeholder="e.g. Bug, Feature, Urgent"
                     autoFocus
                   />
@@ -468,7 +468,7 @@ export default function MemberList({
                 <button
                   type="submit"
                   disabled={labelLoading || !labelName.trim()}
-                  className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50"
+                  className="rounded-md bg-[#2383E2] px-4 py-2 text-sm font-medium text-white hover:bg-[#1B6EC2] disabled:opacity-50"
                 >
                   {labelLoading ? "Creating..." : "Create"}
                 </button>
@@ -478,13 +478,13 @@ export default function MemberList({
                     setShowLabelForm(false);
                     setLabelName("");
                   }}
-                  className="rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
+                  className="rounded-md border border-[#E8E5E0] px-4 py-2 text-sm text-[#787774] hover:bg-[#F7F7F5]"
                 >
                   Cancel
                 </button>
               </div>
               <div className="mt-3">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-[#37352F]">
                   Color
                 </label>
                 <div className="mt-1.5 flex gap-2">
@@ -495,7 +495,7 @@ export default function MemberList({
                       onClick={() => setLabelColor(c.value)}
                       className={`h-7 w-7 rounded-full transition ${
                         labelColor === c.value
-                          ? "ring-2 ring-offset-2 ring-gray-400"
+                          ? "ring-2 ring-offset-2 ring-[#2383E2]"
                           : "hover:scale-110"
                       }`}
                       style={{ backgroundColor: c.value }}
@@ -512,14 +512,14 @@ export default function MemberList({
               {labels.map((label) => (
                 <div
                   key={label.id}
-                  className="flex items-center justify-between rounded-lg border border-gray-200 bg-white px-4 py-3"
+                  className="flex items-center justify-between rounded-md border border-[#E8E5E0] bg-white px-4 py-3"
                 >
                   <div className="flex items-center gap-3">
                     <span
                       className="inline-block h-4 w-4 rounded-full"
                       style={{ backgroundColor: label.color }}
                     />
-                    <span className="text-sm font-medium text-gray-900">
+                    <span className="text-sm font-medium text-[#37352F]">
                       {label.name}
                     </span>
                   </div>
@@ -527,13 +527,13 @@ export default function MemberList({
                     <div className="flex items-center gap-1">
                       <button
                         onClick={() => handleDeleteLabel(label.id)}
-                        className="rounded bg-red-600 px-2 py-1 text-xs font-medium text-white hover:bg-red-700"
+                        className="rounded bg-[#EB5757] px-2 py-1 text-xs font-medium text-white hover:bg-[#D14343]"
                       >
                         Confirm
                       </button>
                       <button
                         onClick={() => setConfirmDeleteLabelId(null)}
-                        className="rounded px-2 py-1 text-xs text-gray-500 hover:bg-gray-100"
+                        className="rounded px-2 py-1 text-xs text-[#787774] hover:bg-[#EFEFEF]"
                       >
                         Cancel
                       </button>
@@ -541,7 +541,7 @@ export default function MemberList({
                   ) : (
                     <button
                       onClick={() => setConfirmDeleteLabelId(label.id)}
-                      className="rounded px-2 py-1 text-xs text-red-600 hover:bg-red-50"
+                      className="rounded px-2 py-1 text-xs text-[#EB5757] hover:bg-[#FBE9E9]"
                     >
                       Delete
                     </button>

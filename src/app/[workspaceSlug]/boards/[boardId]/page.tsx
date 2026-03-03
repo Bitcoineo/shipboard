@@ -31,9 +31,9 @@ export default async function BoardPage({
   return (
     <div className="flex h-full flex-col">
       <div className="mb-4">
-        <h1 className="text-xl font-bold text-gray-900">{board.name}</h1>
+        <h1 className="text-xl font-bold text-[#37352F]">{board.name}</h1>
         {board.description && (
-          <p className="mt-1 text-sm text-gray-500">{board.description}</p>
+          <p className="mt-1 text-sm text-[#787774]">{board.description}</p>
         )}
       </div>
       <BoardColumns

@@ -3,11 +3,11 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-const PRIORITY_COLORS: Record<string, string> = {
-  low: "bg-blue-500",
-  medium: "bg-yellow-500",
-  high: "bg-orange-500",
-  urgent: "bg-red-500",
+const PRIORITY_BORDER_COLORS: Record<string, string> = {
+  low: "border-l-blue-500",
+  medium: "border-l-yellow-500",
+  high: "border-l-orange-500",
+  urgent: "border-l-red-500",
 };
 
 export interface LabelData {
@@ -68,38 +68,29 @@ export default function TaskCard({
       {...attributes}
       {...listeners}
       onClick={onClick}
-      className={`cursor-pointer rounded-lg border border-gray-200 bg-white p-3 shadow-sm transition-shadow hover:shadow-md ${
-        isDragging ? "opacity-50 shadow-lg" : ""
-      }`}
+      className={`cursor-pointer rounded-md border border-[#E8E5E0] bg-white p-2.5 transition-colors hover:bg-[#F7F7F5] ${
+        isDragging ? "shadow-md scale-[1.02]" : ""
+      } ${task.priority !== "none" ? `border-l-2 ${PRIORITY_BORDER_COLORS[task.priority] || ""}` : ""}`}
     >
-      {/* Label pills */}
       {task.labels.length > 0 && (
-        <div className="mb-1.5 flex flex-wrap gap-1">
+        <div className="mb-1.5 flex items-center gap-1">
           {task.labels.map((tl) => (
             <span
               key={tl.label.id}
-              className="inline-block rounded-full px-2 py-0.5 text-[10px] font-medium text-white"
+              className="inline-block h-1.5 w-1.5 rounded-full"
               style={{ backgroundColor: tl.label.color }}
-            >
-              {tl.label.name}
-            </span>
+              title={tl.label.name}
+            />
           ))}
         </div>
       )}
 
-      <div className="flex items-start gap-2">
-        {task.priority !== "none" && (
-          <span
-            className={`mt-1 inline-block h-2 w-2 flex-shrink-0 rounded-full ${PRIORITY_COLORS[task.priority] || ""}`}
-          />
-        )}
-        <span className="text-sm font-medium text-gray-900">{task.title}</span>
-      </div>
+      <span className="text-sm font-normal text-[#37352F]">{task.title}</span>
 
       <div className="mt-2 flex items-center gap-2">
         {task.dueDate && (
           <span
-            className={`text-xs ${isOverdue ? "font-medium text-red-600" : "text-gray-400"}`}
+            className={`text-xs ${isOverdue ? "font-medium text-[#EB5757]" : "text-[#9B9A97]"}`}
           >
             {new Date(task.dueDate).toLocaleDateString("en-US", {
               month: "short",
@@ -111,7 +102,7 @@ export default function TaskCard({
         {task.assignee && (
           <div
             className="ml-auto flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-medium text-white"
-            style={{ backgroundColor: task.assignee.avatarColor || "#374151" }}
+            style={{ backgroundColor: task.assignee.avatarColor || "#2383E2" }}
             title={task.assignee.name || ""}
           >
             {(task.assignee.name || "?")[0].toUpperCase()}

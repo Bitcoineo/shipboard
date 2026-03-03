@@ -33,18 +33,18 @@ export default async function WorkspaceLayout({
       />
 
       <div className="flex flex-1 flex-col overflow-hidden">
-        <header className="flex items-center justify-between border-b bg-white px-6 py-3">
+        <header className="flex items-center justify-between border-b border-[#E8E5E0] bg-white px-6 py-3">
           <div className="flex items-center gap-2 text-sm">
             <Link
               href="/workspaces"
-              className="font-semibold text-gray-900 hover:text-gray-700"
+              className="font-semibold text-[#37352F] transition-colors hover:text-[#2383E2]"
             >
               ShipBoard
             </Link>
-            <span className="text-gray-300">/</span>
+            <span className="text-[#E8E5E0]">/</span>
             <Link
               href={`/${params.workspaceSlug}`}
-              className="font-medium text-gray-700 hover:text-gray-900"
+              className="font-medium text-[#787774] transition-colors hover:text-[#37352F]"
             >
               {workspace.name}
             </Link>
@@ -52,7 +52,7 @@ export default async function WorkspaceLayout({
           <div className="flex items-center gap-2">
             <div
               className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium text-white"
-              style={{ backgroundColor: "#171717" }}
+              style={{ backgroundColor: "#2383E2" }}
               title={session.user.name || session.user.email || ""}
             >
               {(session.user.name || session.user.email || "?")[0].toUpperCase()}

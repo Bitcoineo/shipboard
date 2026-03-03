@@ -10,12 +10,12 @@ export default async function WorkspacesPage() {
   const { data: workspaces } = await getUserWorkspaces(session.user.id);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="border-b bg-white px-6 py-4">
+    <div className="min-h-screen bg-[#F7F7F5]">
+      <header className="border-b border-[#E8E5E0] bg-white px-6 py-4">
         <div className="mx-auto flex max-w-5xl items-center justify-between">
-          <h1 className="text-xl font-semibold text-gray-900">ShipBoard</h1>
+          <h1 className="text-xl font-semibold text-[#37352F]">ShipBoard</h1>
           <div className="flex items-center gap-3">
-            <span className="text-sm text-gray-500">{session.user.email}</span>
+            <span className="text-sm text-[#787774]">{session.user.email}</span>
             <form
               action={async () => {
                 "use server";
@@ -24,7 +24,7 @@ export default async function WorkspacesPage() {
             >
               <button
                 type="submit"
-                className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50"
+                className="rounded-md border border-[#E8E5E0] px-3 py-1.5 text-sm text-[#787774] transition-colors hover:bg-[#EFEFEF]"
               >
                 Sign out
               </button>

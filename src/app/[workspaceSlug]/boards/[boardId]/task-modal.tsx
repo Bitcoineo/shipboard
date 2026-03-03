@@ -101,14 +101,14 @@ export default function TaskModal({
       onClick={(e) => {
         if (e.target === backdropRef.current) onClose();
       }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 animate-fade-in"
     >
-      <div className="mx-4 w-full max-w-lg rounded-xl bg-white p-6 shadow-xl">
+      <div className="mx-4 w-full max-w-lg rounded-md bg-white p-6 shadow-lg animate-modal-in">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900">Task Details</h2>
+          <h2 className="text-lg font-semibold text-[#37352F]">Task Details</h2>
           <button
             onClick={onClose}
-            className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+            className="rounded p-1 text-[#9B9A97] hover:bg-[#EFEFEF] hover:text-[#787774]"
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -118,18 +118,15 @@ export default function TaskModal({
 
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700">
-              Title
-            </label>
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+              className="w-full rounded-md border-0 px-2 py-1.5 text-lg font-semibold text-[#37352F] hover:bg-[#F7F7F5] focus:bg-[#F7F7F5] focus:outline-none focus:ring-0"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700">
+            <label className="mb-1 block text-sm font-medium text-[#787774]">
               Description
             </label>
             <textarea
@@ -137,19 +134,19 @@ export default function TaskModal({
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
               placeholder="Add a description..."
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+              className="w-full rounded-md border-0 px-2 py-1.5 text-sm text-[#37352F] hover:bg-[#F7F7F5] focus:bg-[#F7F7F5] focus:outline-none focus:ring-0"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">
+              <label className="mb-1 block text-sm font-medium text-[#787774]">
                 Priority
               </label>
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value)}
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                className="w-full rounded-md border border-[#E8E5E0] px-3 py-2 text-sm text-[#37352F] hover:bg-[#F7F7F5] focus:border-[#2383E2] focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
               >
                 {PRIORITIES.map((p) => (
                   <option key={p} value={p}>
@@ -160,14 +157,14 @@ export default function TaskModal({
             </div>
 
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">
+              <label className="mb-1 block text-sm font-medium text-[#787774]">
                 Due Date
               </label>
               <input
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                className="w-full rounded-md border border-[#E8E5E0] px-3 py-2 text-sm text-[#37352F] hover:bg-[#F7F7F5] focus:border-[#2383E2] focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
               />
             </div>
           </div>
@@ -175,7 +172,7 @@ export default function TaskModal({
           {/* Labels */}
           {workspaceLabels.length > 0 && (
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">
+              <label className="mb-1 block text-sm font-medium text-[#787774]">
                 Labels
               </label>
               <div className="flex flex-wrap gap-2">
@@ -188,7 +185,7 @@ export default function TaskModal({
                       onClick={() => toggleLabel(label.id)}
                       className={`rounded-full px-3 py-1 text-xs font-medium transition ${
                         isActive
-                          ? "text-white ring-2 ring-offset-1 ring-gray-400"
+                          ? "text-white ring-2 ring-offset-1 ring-[#2383E2]"
                           : "text-white opacity-40 hover:opacity-70"
                       }`}
                       style={{ backgroundColor: label.color }}
@@ -203,19 +200,19 @@ export default function TaskModal({
 
           {task.assignee && (
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">
+              <label className="mb-1 block text-sm font-medium text-[#787774]">
                 Assignee
               </label>
-              <div className="flex items-center gap-2 rounded-lg border border-gray-200 bg-gray-50 px-3 py-2">
+              <div className="flex items-center gap-2 rounded-lg border border-[#E8E5E0] bg-[#F7F7F5] px-3 py-2">
                 <div
                   className="flex h-6 w-6 items-center justify-center rounded-full text-xs font-medium text-white"
                   style={{
-                    backgroundColor: task.assignee.avatarColor || "#374151",
+                    backgroundColor: task.assignee.avatarColor || "#2383E2",
                   }}
                 >
                   {(task.assignee.name || "?")[0].toUpperCase()}
                 </div>
-                <span className="text-sm text-gray-700">
+                <span className="text-sm text-[#37352F]">
                   {task.assignee.name || "Unknown"}
                 </span>
               </div>
@@ -227,16 +224,16 @@ export default function TaskModal({
           <div>
             {confirmDelete ? (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-red-600">Are you sure?</span>
+                <span className="text-sm text-[#EB5757]">Are you sure?</span>
                 <button
                   onClick={handleDelete}
-                  className="rounded bg-red-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-red-700"
+                  className="rounded bg-[#EB5757] px-3 py-1.5 text-sm font-medium text-white hover:bg-[#D14343]"
                 >
                   Yes, delete
                 </button>
                 <button
                   onClick={() => setConfirmDelete(false)}
-                  className="rounded px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100"
+                  className="rounded px-3 py-1.5 text-sm text-[#787774] hover:bg-[#EFEFEF]"
                 >
                   Cancel
                 </button>
@@ -244,7 +241,7 @@ export default function TaskModal({
             ) : (
               <button
                 onClick={() => setConfirmDelete(true)}
-                className="rounded px-3 py-1.5 text-sm text-red-600 hover:bg-red-50"
+                className="rounded px-3 py-1.5 text-sm text-[#EB5757] hover:bg-[#FBE9E9]"
               >
                 Delete task
               </button>
@@ -254,14 +251,14 @@ export default function TaskModal({
           <div className="flex gap-2">
             <button
               onClick={onClose}
-              className="rounded px-4 py-2 text-sm text-gray-600 hover:bg-gray-100"
+              className="rounded px-4 py-2 text-sm text-[#787774] hover:bg-[#EFEFEF]"
             >
               Cancel
             </button>
             <button
               onClick={handleSave}
               disabled={saving || !title.trim()}
-              className="rounded bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50"
+              className="rounded bg-[#2383E2] px-4 py-2 text-sm font-medium text-white hover:bg-[#1B6EC2] disabled:opacity-50"
             >
               {saving ? "Saving..." : "Save Changes"}
             </button>
