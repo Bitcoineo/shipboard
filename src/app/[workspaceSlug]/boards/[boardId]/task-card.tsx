@@ -10,6 +10,20 @@ const PRIORITY_BORDER_COLORS: Record<string, string> = {
   urgent: "border-l-red-500",
 };
 
+const PRIORITY_BADGES: Record<string, { text: string; classes: string }> = {
+  urgent: { text: "Urgent", classes: "bg-red-50 text-red-600" },
+  high: { text: "High", classes: "bg-orange-50 text-orange-600" },
+  medium: { text: "Medium", classes: "bg-yellow-50 text-yellow-600" },
+  low: { text: "Low", classes: "bg-blue-50 text-blue-600" },
+};
+
+export function hexToRgba(hex: string, alpha: number): string {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 export interface LabelData {
   id: string;
   name: string;
@@ -80,8 +94,8 @@ export default function TaskCard({
       }}
       className={`group relative cursor-pointer rounded-md border p-2.5 transition-colors ${
         isSelected
-          ? "border-[#2383E2] bg-[#EBF5FF]"
-          : "border-[#E8E5E0] bg-white hover:bg-[#F7F7F5]"
+          ? "border-[#4F46E5] bg-[#EEF2FF]"
+          : "border-[#EEEEED] bg-white hover:bg-[#F8F8F7] hover:shadow-sm"
       } ${isDragging ? "shadow-md scale-[1.02]" : ""} ${
         task.priority !== "none" ? `border-l-2 ${PRIORITY_BORDER_COLORS[task.priority] || ""}` : ""
       }`}
@@ -94,7 +108,7 @@ export default function TaskCard({
         }}
         className={`absolute -left-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full border-2 transition-opacity ${
           isSelected
-            ? "border-[#2383E2] bg-[#2383E2] opacity-100"
+            ? "border-[#4F46E5] bg-[#4F46E5] opacity-100"
             : "border-[#D3D1CB] bg-white opacity-0 group-hover:opacity-100"
         }`}
       >
@@ -105,37 +119,54 @@ export default function TaskCard({
         )}
       </div>
 
+      {/* Priority badge */}
+      {task.priority !== "none" && PRIORITY_BADGES[task.priority] && (
+        <span className={`mb-1 inline-block rounded-full px-1.5 py-0.5 text-[10px] font-medium ${PRIORITY_BADGES[task.priority].classes}`}>
+          {PRIORITY_BADGES[task.priority].text}
+        </span>
+      )}
+
+      {/* Title */}
+      <span className="text-sm font-normal text-[#2D2D2D]">{task.title}</span>
+
+      {/* Label pills */}
       {task.labels.length > 0 && (
-        <div className="mb-1.5 flex items-center gap-1">
-          {task.labels.map((tl) => (
+        <div className="mt-1.5 flex flex-wrap items-center gap-1">
+          {task.labels.slice(0, 3).map((tl) => (
             <span
               key={tl.label.id}
-              className="inline-block h-1.5 w-1.5 rounded-full"
-              style={{ backgroundColor: tl.label.color }}
-              title={tl.label.name}
-            />
+              className="rounded-full px-1.5 py-0.5 text-[10px] font-medium"
+              style={{ backgroundColor: hexToRgba(tl.label.color, 0.15), color: tl.label.color }}
+            >
+              {tl.label.name}
+            </span>
           ))}
+          {task.labels.length > 3 && (
+            <span className="rounded-full bg-[#F8F8F7] px-1.5 py-0.5 text-[10px] text-[#A3A3A3]">
+              +{task.labels.length - 3}
+            </span>
+          )}
         </div>
       )}
 
-      <span className="text-sm font-normal text-[#37352F]">{task.title}</span>
-
+      {/* Bottom row: due date + assignee */}
       <div className="mt-2 flex items-center gap-2">
         {task.dueDate && (
-          <span
-            className={`text-xs ${isOverdue ? "font-medium text-[#EB5757]" : "text-[#9B9A97]"}`}
-          >
-            {new Date(task.dueDate).toLocaleDateString("en-US", {
-              month: "short",
-              day: "numeric",
-            })}
-          </span>
+          isOverdue ? (
+            <span className="rounded-full bg-red-50 px-1.5 py-0.5 text-[10px] font-medium text-red-600">
+              Overdue · {new Date(task.dueDate).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+            </span>
+          ) : (
+            <span className="text-xs text-[#A3A3A3]">
+              {new Date(task.dueDate).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+            </span>
+          )
         )}
 
         {task.assignee && (
           <div
-            className="ml-auto flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-medium text-white"
-            style={{ backgroundColor: task.assignee.avatarColor || "#2383E2" }}
+            className="ml-auto flex h-6 w-6 items-center justify-center rounded-full text-xs font-medium text-white"
+            style={{ backgroundColor: task.assignee.avatarColor || "#4F46E5" }}
             title={task.assignee.name || ""}
           >
             {(task.assignee.name || "?")[0].toUpperCase()}

@@ -32,8 +32,8 @@ export default async function MembersPage({
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-[#37352F]">Members & Settings</h1>
-      <p className="mt-1 text-sm text-[#787774]">
+      <h1 className="text-2xl font-bold text-[#2D2D2D]">Members & Settings</h1>
+      <p className="mt-1 text-sm text-[#6B6B6B]">
         People with access to this workspace.
       </p>
       <div className="mt-6">

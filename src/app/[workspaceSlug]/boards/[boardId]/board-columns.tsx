@@ -45,7 +45,7 @@ function DroppableColumn({
   return (
     <div
       ref={setNodeRef}
-      className={`flex-1 px-3 pb-3 ${isOver ? "rounded bg-[#EFEFEF]" : ""}`}
+      className={`flex-1 px-3 pb-3 ${isOver ? "rounded bg-[#F0F0EF]" : ""}`}
       style={{ minHeight: 40 }}
     >
       {children}
@@ -434,12 +434,12 @@ export default function BoardColumns({
                       if (e.key === "Enter") handleRename(col.id);
                       if (e.key === "Escape") setEditingId(null);
                     }}
-                    className="w-full rounded border border-[#E8E5E0] px-2 py-0.5 text-sm font-semibold focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
+                    className="w-full rounded border border-[#EEEEED] px-2 py-0.5 text-sm font-semibold focus:outline-none focus:ring-1 focus:ring-[#4F46E5]"
                   />
                 ) : (
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-[#787774]">
+                  <h3 className="flex items-center text-sm font-medium text-[#6B6B6B]">
                     {col.name}
-                    <span className="ml-2 text-xs font-normal text-[#9B9A97]">
+                    <span className="ml-2 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[#EEEEED] px-1.5 text-xs text-[#A3A3A3]">
                       {col.tasks.length}
                     </span>
                   </h3>
@@ -449,7 +449,7 @@ export default function BoardColumns({
                     onClick={() =>
                       setMenuOpenId(menuOpenId === col.id ? null : col.id)
                     }
-                    className="rounded p-1 text-[#9B9A97] hover:bg-[#EFEFEF] hover:text-[#787774]"
+                    className="rounded p-1 text-[#A3A3A3] hover:bg-[#F0F0EF] hover:text-[#6B6B6B]"
                   >
                     <svg
                       className="h-4 w-4"
@@ -460,10 +460,10 @@ export default function BoardColumns({
                     </svg>
                   </button>
                   {menuOpenId === col.id && (
-                    <div className="absolute right-0 z-10 mt-1 w-36 rounded-md border border-[#E8E5E0] bg-white py-1 shadow-sm">
+                    <div className="absolute right-0 z-10 mt-1 w-36 rounded-md border border-[#EEEEED] bg-white py-1 shadow-sm">
                       <button
                         onClick={() => startRename(col)}
-                        className="w-full px-3 py-1.5 text-left text-sm text-[#37352F] hover:bg-[#F7F7F5]"
+                        className="w-full px-3 py-1.5 text-left text-sm text-[#2D2D2D] hover:bg-[#F8F8F7]"
                       >
                         Rename
                       </button>
@@ -502,10 +502,18 @@ export default function BoardColumns({
                     ))}
                   </div>
                 </SortableContext>
-                {col.tasks.length === 0 && !addingTaskColId && (
-                  <p className="py-8 text-center text-xs text-[#9B9A97]">
-                    Nothing here yet
-                  </p>
+                {col.tasks.length === 0 && addingTaskColId !== col.id && (
+                  <div className="flex flex-col items-center justify-center py-8">
+                    <button
+                      onClick={() => { setAddingTaskColId(col.id); setNewTaskTitle(""); }}
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-dashed border-[#EEEEED] text-[#A3A3A3] hover:border-[#4F46E5] hover:text-[#4F46E5]"
+                    >
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                      </svg>
+                    </button>
+                    <span className="mt-2 text-xs text-[#A3A3A3]">Add a task</span>
+                  </div>
                 )}
                 {/* Add task */}
                 <div className="pt-1">
@@ -523,13 +531,13 @@ export default function BoardColumns({
                           }
                         }}
                         placeholder="What needs to be done?"
-                        className="w-full rounded border border-[#E8E5E0] px-2 py-1.5 text-sm focus:border-[#2383E2] focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
+                        className="w-full rounded border border-[#EEEEED] px-2 py-1.5 text-sm focus:border-[#4F46E5] focus:outline-none focus:ring-1 focus:ring-[#4F46E5]"
                       />
                       <div className="mt-1.5 flex gap-2">
                         <button
                           onClick={() => handleAddTask(col.id)}
                           disabled={addTaskLoading || !newTaskTitle.trim()}
-                          className="rounded bg-[#2383E2] px-3 py-1 text-sm font-medium text-white hover:bg-[#1B6EC2] disabled:opacity-50"
+                          className="rounded bg-[#4F46E5] px-3 py-1 text-sm font-medium text-white hover:bg-[#4338CA] disabled:opacity-50"
                         >
                           {addTaskLoading ? "Adding..." : "Add"}
                         </button>
@@ -538,7 +546,7 @@ export default function BoardColumns({
                             setAddingTaskColId(null);
                             setNewTaskTitle("");
                           }}
-                          className="rounded px-3 py-1 text-sm text-[#787774] hover:bg-[#EFEFEF]"
+                          className="rounded px-3 py-1 text-sm text-[#6B6B6B] hover:bg-[#F0F0EF]"
                         >
                           Cancel
                         </button>
@@ -550,7 +558,7 @@ export default function BoardColumns({
                         setAddingTaskColId(col.id);
                         setNewTaskTitle("");
                       }}
-                      className="w-full rounded py-1.5 text-sm text-[#9B9A97] hover:bg-[#EFEFEF] hover:text-[#787774]"
+                      className="w-full rounded py-1.5 text-sm text-[#A3A3A3] hover:bg-[#F0F0EF] hover:text-[#6B6B6B]"
                     >
                       + Task
                     </button>
@@ -573,13 +581,13 @@ export default function BoardColumns({
                   placeholder="e.g. Review, Blocked"
                   autoFocus
                   required
-                  className="w-full rounded border border-[#E8E5E0] px-3 py-1.5 text-sm focus:border-[#2383E2] focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
+                  className="w-full rounded border border-[#EEEEED] px-3 py-1.5 text-sm focus:border-[#4F46E5] focus:outline-none focus:ring-1 focus:ring-[#4F46E5]"
                 />
                 <div className="mt-2 flex gap-2">
                   <button
                     type="submit"
                     disabled={addLoading}
-                    className="rounded bg-[#2383E2] px-3 py-1.5 text-sm font-medium text-white hover:bg-[#1B6EC2] disabled:opacity-50"
+                    className="rounded bg-[#4F46E5] px-3 py-1.5 text-sm font-medium text-white hover:bg-[#4338CA] disabled:opacity-50"
                   >
                     {addLoading ? "Adding..." : "Add"}
                   </button>
@@ -589,7 +597,7 @@ export default function BoardColumns({
                       setShowAddColumn(false);
                       setNewColumnName("");
                     }}
-                    className="rounded px-3 py-1.5 text-sm text-[#787774] hover:bg-[#EFEFEF]"
+                    className="rounded px-3 py-1.5 text-sm text-[#6B6B6B] hover:bg-[#F0F0EF]"
                   >
                     Cancel
                   </button>
@@ -598,7 +606,7 @@ export default function BoardColumns({
             ) : (
               <button
                 onClick={() => setShowAddColumn(true)}
-                className="flex w-72 items-center gap-2 rounded-md border border-dashed border-[#E8E5E0] px-3 py-2.5 text-sm text-[#9B9A97] hover:border-[#37352F]/20 hover:text-[#787774]"
+                className="flex w-72 items-center gap-2 rounded-md border border-dashed border-[#EEEEED] px-3 py-2.5 text-sm text-[#A3A3A3] hover:border-[#2D2D2D]/20 hover:text-[#6B6B6B]"
               >
                 <svg
                   className="h-4 w-4"
@@ -621,8 +629,8 @@ export default function BoardColumns({
 
         <DragOverlay>
           {activeTask ? (
-            <div className="w-64 rounded-md border border-[#2383E2]/30 bg-white p-3 shadow-md scale-[1.02]">
-              <span className="text-sm font-medium text-[#37352F]">
+            <div className="w-64 rounded-md border border-[#4F46E5]/30 bg-white p-3 shadow-md scale-[1.02]">
+              <span className="text-sm font-medium text-[#2D2D2D]">
                 {activeTask.title}
               </span>
             </div>
@@ -631,8 +639,8 @@ export default function BoardColumns({
       </DndContext>
 
       {selectedIds.size > 0 && (
-        <div className="animate-slide-up fixed bottom-6 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-lg border border-[#E8E5E0] bg-white px-4 py-2.5 shadow-lg">
-          <span className="text-sm font-medium text-[#37352F]">
+        <div className="animate-slide-up fixed bottom-6 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-lg border border-[#EEEEED] bg-white px-4 py-2.5 shadow-lg">
+          <span className="text-sm font-medium text-[#2D2D2D]">
             {selectedIds.size} task{selectedIds.size !== 1 ? "s" : ""} selected
           </span>
           <button
@@ -643,7 +651,7 @@ export default function BoardColumns({
           </button>
           <button
             onClick={() => setSelectedIds(new Set())}
-            className="rounded px-3 py-1.5 text-sm text-[#787774] hover:bg-[#EFEFEF]"
+            className="rounded px-3 py-1.5 text-sm text-[#6B6B6B] hover:bg-[#F0F0EF]"
           >
             Clear
           </button>

@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 body {
-  color: #37352F;
+  color: #2D2D2D;
   background: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 ::selection {
-  background: rgba(35, 131, 226, 0.15);
+  background: rgba(79, 70, 229, 0.15);
 }
 
 @keyframes fadeInUp {
@@ -171,7 +171,7 @@ body {
   left: 0;
   top: 50%;
   height: 1.5px;
-  background: #9B9A97;
+  background: #A3A3A3;
   width: 0;
   animation: kbStrikethrough 400ms ease-out both;
   animation-delay: 4500ms;
@@ -181,6 +181,15 @@ body {
 .kb-idle-pulse {
   animation: kbIdlePulse 3s ease-in-out infinite;
   animation-delay: 5000ms;
+}
+
+/* Command palette entrance */
+@keyframes cmdPaletteIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-cmd-palette-in {
+  animation: cmdPaletteIn 100ms ease-out both;
 }
 
 /* Floating bar slide-up */
@@ -207,5 +216,5 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9B9A97;
+  background: #A3A3A3;
 }

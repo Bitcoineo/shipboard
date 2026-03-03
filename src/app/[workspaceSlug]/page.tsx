@@ -26,7 +26,7 @@ export default async function WorkspacePage({
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-[#37352F]">{workspace.name}</h1>
+      <h1 className="text-2xl font-bold text-[#2D2D2D]">{workspace.name}</h1>
       <div className="mt-6">
         <BoardList
           initialBoards={boards ?? []}

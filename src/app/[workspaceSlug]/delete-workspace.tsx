@@ -36,7 +36,7 @@ export default function DeleteWorkspace({
   return (
     <div className="mt-12 border-t border-[#F5D0D0] pt-8">
       <h2 className="text-lg font-semibold text-[#EB5757]">Danger zone</h2>
-      <p className="mt-1 text-sm text-[#787774]">
+      <p className="mt-1 text-sm text-[#6B6B6B]">
         Delete this workspace and everything in it. Boards, tasks, members — all gone. This can&apos;t be undone.
       </p>
 
@@ -49,14 +49,14 @@ export default function DeleteWorkspace({
         </button>
       ) : (
         <div className="mt-4 rounded-md border border-[#F5D0D0] bg-[#FBE9E9] p-4">
-          <p className="text-sm text-[#37352F]">
+          <p className="text-sm text-[#2D2D2D]">
             Type the workspace name to confirm.
           </p>
           <input
             value={confirmText}
             onChange={(e) => setConfirmText(e.target.value)}
             placeholder={workspaceName}
-            className="mt-2 block w-full max-w-sm rounded-md border border-[#E8E5E0] px-3 py-2 text-sm focus:border-[#EB5757] focus:outline-none focus:ring-2 focus:ring-[#EB5757]"
+            className="mt-2 block w-full max-w-sm rounded-md border border-[#EEEEED] px-3 py-2 text-sm focus:border-[#EB5757] focus:outline-none focus:ring-2 focus:ring-[#EB5757]"
             autoFocus
           />
           {error && <p className="mt-2 text-sm text-[#EB5757]">{error}</p>}
@@ -74,7 +74,7 @@ export default function DeleteWorkspace({
                 setConfirmText("");
                 setError("");
               }}
-              className="rounded-md border border-[#E8E5E0] px-4 py-2 text-sm text-[#787774] transition-colors hover:bg-white"
+              className="rounded-md border border-[#EEEEED] px-4 py-2 text-sm text-[#6B6B6B] transition-colors hover:bg-white"
             >
               Cancel
             </button>
