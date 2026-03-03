@@ -17,7 +17,7 @@ export default function Sidebar({
   const pathname = usePathname();
 
   return (
-    <aside className="flex w-60 flex-col border-r border-[#EEEEED] bg-[#F8F8F7]">
+    <aside className="flex w-64 flex-col border-r border-[#EEEEED] bg-[#F8F8F7]">
       <div className="border-b border-[#EEEEED] px-4 py-3">
         <Link href="/workspaces" className="flex items-center gap-1.5">
           <svg className="h-4 w-4 text-[#4F46E5]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +61,7 @@ export default function Sidebar({
                 <li key={board.id}>
                   <Link
                     href={boardPath}
-                    className={`block rounded-md py-1.5 text-sm transition-colors duration-120 ${
+                    className={`block rounded-md py-2 text-sm transition-colors duration-120 ${
                       isActive
                         ? "border-l-[3px] border-[#4F46E5] bg-white pl-[calc(0.5rem-3px)] pr-2 font-medium text-[#4F46E5]"
                         : "px-2 text-[#6B6B6B] hover:bg-[#F0F0EF] hover:text-[#2D2D2D]"
@@ -79,7 +79,7 @@ export default function Sidebar({
           <li>
             <Link
               href={`/${workspaceSlug}/members`}
-              className={`block rounded-md py-1.5 text-sm transition-colors duration-120 ${
+              className={`block rounded-md py-2 text-sm transition-colors duration-120 ${
                 pathname === `/${workspaceSlug}/members`
                   ? "border-l-[3px] border-[#4F46E5] bg-white pl-[calc(0.5rem-3px)] pr-2 font-medium text-[#4F46E5]"
                   : "px-2 text-[#6B6B6B] hover:bg-[#F0F0EF] hover:text-[#2D2D2D]"
@@ -91,7 +91,10 @@ export default function Sidebar({
         </ul>
       </nav>
       <div className="border-t border-[#EEEEED] px-4 py-3">
-        <span className="text-xs text-[#A3A3A3]">⌘K to search</span>
+        <div className="flex items-center gap-2 text-xs text-[#A3A3A3]">
+          <kbd className="rounded border border-[#EEEEED] bg-white px-1.5 py-0.5 font-mono text-[11px] text-[#A3A3A3]">⌘K</kbd>
+          <span>Search</span>
+        </div>
       </div>
     </aside>
   );

@@ -92,7 +92,7 @@ export default function TaskCard({
           onClick();
         }
       }}
-      className={`group relative cursor-pointer rounded-md border p-2.5 transition-colors ${
+      className={`group relative cursor-pointer rounded-md border px-4 py-3 transition-colors ${
         isSelected
           ? "border-[#4F46E5] bg-[#EEF2FF]"
           : "border-[#EEEEED] bg-white hover:bg-[#F8F8F7] hover:shadow-sm"
@@ -121,13 +121,13 @@ export default function TaskCard({
 
       {/* Priority badge */}
       {task.priority !== "none" && PRIORITY_BADGES[task.priority] && (
-        <span className={`mb-1 inline-block rounded-full px-1.5 py-0.5 text-[10px] font-medium ${PRIORITY_BADGES[task.priority].classes}`}>
+        <span className={`mb-1 inline-block rounded-full px-2 py-0.5 text-[11px] font-medium ${PRIORITY_BADGES[task.priority].classes}`}>
           {PRIORITY_BADGES[task.priority].text}
         </span>
       )}
 
       {/* Title */}
-      <span className="text-sm font-normal text-[#2D2D2D]">{task.title}</span>
+      <span className="text-[15px] font-normal text-[#2D2D2D]">{task.title}</span>
 
       {/* Label pills */}
       {task.labels.length > 0 && (
@@ -135,14 +135,14 @@ export default function TaskCard({
           {task.labels.slice(0, 3).map((tl) => (
             <span
               key={tl.label.id}
-              className="rounded-full px-1.5 py-0.5 text-[10px] font-medium"
+              className="rounded-full px-1.5 py-0.5 text-[11px] font-medium"
               style={{ backgroundColor: hexToRgba(tl.label.color, 0.15), color: tl.label.color }}
             >
               {tl.label.name}
             </span>
           ))}
           {task.labels.length > 3 && (
-            <span className="rounded-full bg-[#F8F8F7] px-1.5 py-0.5 text-[10px] text-[#A3A3A3]">
+            <span className="rounded-full bg-[#F8F8F7] px-1.5 py-0.5 text-[11px] text-[#A3A3A3]">
               +{task.labels.length - 3}
             </span>
           )}
@@ -153,11 +153,11 @@ export default function TaskCard({
       <div className="mt-2 flex items-center gap-2">
         {task.dueDate && (
           isOverdue ? (
-            <span className="rounded-full bg-red-50 px-1.5 py-0.5 text-[10px] font-medium text-red-600">
+            <span className="rounded-full bg-red-50 px-1.5 py-0.5 text-[11px] font-medium text-red-600">
               Overdue · {new Date(task.dueDate).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
             </span>
           ) : (
-            <span className="text-xs text-[#A3A3A3]">
+            <span className="text-[13px] text-[#A3A3A3]">
               {new Date(task.dueDate).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
             </span>
           )

@@ -198,7 +198,7 @@ export default function MemberList({
           {!showInvite ? (
             <button
               onClick={() => setShowInvite(true)}
-              className="rounded-md bg-[#4F46E5] px-4 py-2 text-sm font-medium text-white hover:bg-[#4338CA]"
+              className="rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#4338CA]"
             >
               Invite member
             </button>
@@ -215,7 +215,7 @@ export default function MemberList({
                     required
                     value={inviteEmail}
                     onChange={(e) => setInviteEmail(e.target.value)}
-                    className="block w-full rounded-md border border-[#EEEEED] px-3 py-2 text-sm focus:border-[#4F46E5] focus:outline-none focus:ring-1 focus:ring-[#4F46E5]"
+                    className="block w-full rounded-md border border-[#EEEEED] px-3 py-2.5 text-sm focus:border-[#4F46E5] focus:outline-none focus:ring-1 focus:ring-[#4F46E5]"
                     placeholder="Email address"
                     autoFocus
                   />
@@ -227,7 +227,7 @@ export default function MemberList({
                     onChange={(e) =>
                       setInviteRole(e.target.value as "member" | "admin")
                     }
-                    className="mt-1 block rounded-md border border-[#EEEEED] px-3 py-2 text-sm focus:border-[#4F46E5] focus:outline-none focus:ring-1 focus:ring-[#4F46E5]"
+                    className="mt-1 block rounded-md border border-[#EEEEED] px-3 py-2.5 text-sm focus:border-[#4F46E5] focus:outline-none focus:ring-1 focus:ring-[#4F46E5]"
                   >
                     <option value="member">Member</option>
                     <option value="admin">Admin</option>
@@ -236,7 +236,7 @@ export default function MemberList({
                 <button
                   type="submit"
                   disabled={inviteLoading}
-                  className="rounded-md bg-[#4F46E5] px-4 py-2 text-sm font-medium text-white hover:bg-[#4338CA] disabled:opacity-50"
+                  className="rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#4338CA] disabled:opacity-50"
                 >
                   {inviteLoading ? "Sending..." : "Send invite"}
                 </button>
@@ -247,7 +247,7 @@ export default function MemberList({
                     setInviteError("");
                     setInviteLink("");
                   }}
-                  className="rounded-md border border-[#EEEEED] px-4 py-2 text-sm text-[#6B6B6B] hover:bg-[#F8F8F7]"
+                  className="rounded-md border border-[#EEEEED] px-4 py-2.5 text-sm text-[#6B6B6B] hover:bg-[#F8F8F7]"
                 >
                   Cancel
                 </button>
@@ -449,7 +449,7 @@ export default function MemberList({
                     required
                     value={labelName}
                     onChange={(e) => setLabelName(e.target.value)}
-                    className="mt-1 block w-full rounded-md border border-[#EEEEED] px-3 py-2 text-sm focus:border-[#4F46E5] focus:outline-none focus:ring-1 focus:ring-[#4F46E5]"
+                    className="mt-1 block w-full rounded-md border border-[#EEEEED] px-3 py-2.5 text-sm focus:border-[#4F46E5] focus:outline-none focus:ring-1 focus:ring-[#4F46E5]"
                     placeholder="e.g. Bug, Feature, Urgent"
                     autoFocus
                   />
@@ -457,7 +457,7 @@ export default function MemberList({
                 <button
                   type="submit"
                   disabled={labelLoading || !labelName.trim()}
-                  className="rounded-md bg-[#4F46E5] px-4 py-2 text-sm font-medium text-white hover:bg-[#4338CA] disabled:opacity-50"
+                  className="rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#4338CA] disabled:opacity-50"
                 >
                   {labelLoading ? "Creating..." : "Create"}
                 </button>
@@ -467,7 +467,7 @@ export default function MemberList({
                     setShowLabelForm(false);
                     setLabelName("");
                   }}
-                  className="rounded-md border border-[#EEEEED] px-4 py-2 text-sm text-[#6B6B6B] hover:bg-[#F8F8F7]"
+                  className="rounded-md border border-[#EEEEED] px-4 py-2.5 text-sm text-[#6B6B6B] hover:bg-[#F8F8F7]"
                 >
                   Cancel
                 </button>

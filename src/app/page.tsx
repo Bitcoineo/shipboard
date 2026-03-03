@@ -36,7 +36,7 @@ export default async function Home() {
         </div>
       </header>
 
-      <main className="flex flex-1 flex-col items-center justify-center px-6 pb-24">
+      <main className="flex flex-1 flex-col items-center justify-center px-6 pb-16">
         <div className="mx-auto max-w-2xl animate-fade-in-up text-center">
           <h1 className="text-5xl font-bold tracking-tight text-[#2D2D2D]">
             Your team&apos;s work. One board.
@@ -60,7 +60,7 @@ export default async function Home() {
           </div>
 
           {/* Kanban animation mockup */}
-          <div className="mx-auto mt-12 max-w-2xl rounded-xl border border-[#EEEEED] bg-white p-4 shadow-sm sm:p-6">
+          <div className="mx-auto mt-8 max-w-2xl rounded-xl border border-[#EEEEED] bg-white p-4 shadow-sm sm:p-6">
             <div className="flex gap-2 sm:gap-3">
               {/* ── To Do column ── */}
               <div className="kb-col-1 flex-1 rounded-lg bg-[#F8F8F7] p-2 opacity-0 sm:p-3">
@@ -155,7 +155,42 @@ export default async function Home() {
             </div>
           </div>
         </div>
+
+        {/* How it works */}
+        <section className="mx-auto mt-16 max-w-3xl">
+          <h2 className="text-center text-2xl font-bold text-[#2D2D2D]">How it works</h2>
+          <div className="mt-10 grid gap-10 sm:grid-cols-3">
+            {[
+              { step: 1, title: "Create a workspace", desc: "Invite your team. Everyone sees the same boards." },
+              { step: 2, title: "Add boards and tasks", desc: "Drag tasks between columns as work progresses." },
+              { step: 3, title: "Ship with clarity", desc: "Always know what\u2019s done, what\u2019s stuck, and who\u2019s on it." },
+            ].map((s) => (
+              <div key={s.step} className="text-center">
+                <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#EEF2FF] text-sm font-bold text-[#4F46E5]">
+                  {s.step}
+                </div>
+                <h3 className="mt-4 text-[15px] font-semibold text-[#2D2D2D]">{s.title}</h3>
+                <p className="mt-2 text-sm text-[#6B6B6B]">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <p className="mt-20 text-center text-sm text-[#A3A3A3]">
+          Built for teams who think in tasks, not tickets.
+        </p>
       </main>
+
+      {/* CTA band */}
+      <section className="bg-[#2D2D2D] px-6 py-16 text-center">
+        <h2 className="text-2xl font-bold text-white">Your first board takes 30 seconds.</h2>
+        <Link
+          href="/register"
+          className="mt-6 inline-block rounded-md bg-[#4F46E5] px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#4338CA] active:scale-[0.98]"
+        >
+          Start for free
+        </Link>
+      </section>
 
       <footer className="border-t border-[#EEEEED] px-6 py-6">
         <div className="flex items-center justify-center gap-3 text-sm text-[#A3A3A3]">

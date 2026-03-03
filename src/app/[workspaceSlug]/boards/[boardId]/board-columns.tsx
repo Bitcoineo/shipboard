@@ -45,7 +45,7 @@ function DroppableColumn({
   return (
     <div
       ref={setNodeRef}
-      className={`flex-1 px-3 pb-3 ${isOver ? "rounded bg-[#F0F0EF]" : ""}`}
+      className={`flex flex-1 flex-col px-3 pb-3 ${isOver ? "rounded bg-[#F0F0EF]" : ""}`}
       style={{ minHeight: 40 }}
     >
       {children}
@@ -420,7 +420,7 @@ export default function BoardColumns({
           {columnsData.map((col) => (
             <div
               key={col.id}
-              className="flex w-72 flex-shrink-0 flex-col"
+              className="flex w-80 flex-shrink-0 flex-col"
             >
               {/* Column Header */}
               <div className="flex items-center justify-between px-3 py-2.5">
@@ -437,9 +437,9 @@ export default function BoardColumns({
                     className="w-full rounded border border-[#EEEEED] px-2 py-0.5 text-sm font-semibold focus:outline-none focus:ring-1 focus:ring-[#4F46E5]"
                   />
                 ) : (
-                  <h3 className="flex items-center text-sm font-medium text-[#6B6B6B]">
+                  <h3 className="flex items-center text-[15px] font-medium text-[#6B6B6B]">
                     {col.name}
-                    <span className="ml-2 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[#EEEEED] px-1.5 text-xs text-[#A3A3A3]">
+                    <span className="ml-2 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[#EEEEED] px-1.5 text-[13px] text-[#A3A3A3]">
                       {col.tasks.length}
                     </span>
                   </h3>
@@ -449,6 +449,7 @@ export default function BoardColumns({
                     onClick={() =>
                       setMenuOpenId(menuOpenId === col.id ? null : col.id)
                     }
+                    title="Column options"
                     className="rounded p-1 text-[#A3A3A3] hover:bg-[#F0F0EF] hover:text-[#6B6B6B]"
                   >
                     <svg
@@ -503,9 +504,10 @@ export default function BoardColumns({
                   </div>
                 </SortableContext>
                 {col.tasks.length === 0 && addingTaskColId !== col.id && (
-                  <div className="flex flex-col items-center justify-center py-8">
+                  <div className="flex flex-1 flex-col items-center justify-center py-8">
                     <button
                       onClick={() => { setAddingTaskColId(col.id); setNewTaskTitle(""); }}
+                      title="Add task"
                       className="flex h-8 w-8 items-center justify-center rounded-full border border-dashed border-[#EEEEED] text-[#A3A3A3] hover:border-[#4F46E5] hover:text-[#4F46E5]"
                     >
                       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -552,7 +554,7 @@ export default function BoardColumns({
                         </button>
                       </div>
                     </div>
-                  ) : (
+                  ) : col.tasks.length > 0 ? (
                     <button
                       onClick={() => {
                         setAddingTaskColId(col.id);
@@ -562,18 +564,18 @@ export default function BoardColumns({
                     >
                       + Task
                     </button>
-                  )}
+                  ) : null}
                 </div>
               </DroppableColumn>
             </div>
           ))}
 
           {/* Add Column */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 self-start">
             {showAddColumn ? (
               <form
                 onSubmit={handleAddColumn}
-                className="w-72 rounded-md p-3"
+                className="w-80 rounded-md p-3"
               >
                 <input
                   value={newColumnName}
@@ -606,7 +608,8 @@ export default function BoardColumns({
             ) : (
               <button
                 onClick={() => setShowAddColumn(true)}
-                className="flex w-72 items-center gap-2 rounded-md border border-dashed border-[#EEEEED] px-3 py-2.5 text-sm text-[#A3A3A3] hover:border-[#2D2D2D]/20 hover:text-[#6B6B6B]"
+                title="Add column"
+                className="flex w-80 items-center gap-2 rounded-md border border-dashed border-[#EEEEED] px-3 py-2.5 text-sm text-[#A3A3A3] hover:border-[#2D2D2D]/20 hover:text-[#6B6B6B]"
               >
                 <svg
                   className="h-4 w-4"

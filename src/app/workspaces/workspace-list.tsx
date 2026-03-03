@@ -82,7 +82,7 @@ export default function WorkspaceList({
         {!showForm && (
           <button
             onClick={() => setShowForm(true)}
-            className="rounded-md bg-[#4F46E5] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#4338CA]"
+            className="rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#4338CA]"
           >
             New workspace
           </button>
@@ -101,7 +101,7 @@ export default function WorkspaceList({
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="mt-1 block w-full rounded-md border border-[#EEEEED] px-3 py-2 text-sm text-[#2D2D2D] focus:border-[#4F46E5] focus:outline-none focus:ring-2 focus:ring-[#4F46E5]"
+              className="mt-1 block w-full rounded-md border border-[#EEEEED] px-3 py-2.5 text-sm text-[#2D2D2D] focus:border-[#4F46E5] focus:outline-none focus:ring-2 focus:ring-[#4F46E5]"
               placeholder="e.g. Marketing, Engineering"
               autoFocus
             />
@@ -117,7 +117,7 @@ export default function WorkspaceList({
           <button
             type="button"
             onClick={() => { setShowForm(false); setError(""); setName(""); }}
-            className="rounded-md border border-[#EEEEED] px-4 py-2 text-sm text-[#6B6B6B] transition-colors hover:bg-[#F8F8F7]"
+            className="rounded-md border border-[#EEEEED] px-4 py-2.5 text-sm text-[#6B6B6B] transition-colors hover:bg-[#F8F8F7]"
           >
             Cancel
           </button>
@@ -129,18 +129,18 @@ export default function WorkspaceList({
           <Link
             key={ws.id}
             href={`/${ws.slug}`}
-            className="animate-fade-in-up group rounded-md border border-[#EEEEED] bg-white p-5 transition-all duration-150 hover:bg-[#F8F8F7]"
+            className="animate-fade-in-up group rounded-md border border-[#EEEEED] bg-white p-6 transition-all duration-150 hover:bg-[#F8F8F7]"
             style={{ animationDelay: `${i * 50}ms` }}
           >
             <div className="flex items-start justify-between">
-              <h3 className="font-medium text-[#2D2D2D]">
+              <h3 className="text-lg font-medium text-[#2D2D2D]">
                 {ws.name}
               </h3>
               <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${ROLE_STYLES[ws.role] || ROLE_STYLES.member}`}>
                 {ws.role}
               </span>
             </div>
-            <p className="mt-2 text-xs text-[#A3A3A3]">/{ws.slug}</p>
+            <p className="mt-2 text-[13px] text-[#A3A3A3]">/{ws.slug}</p>
           </Link>
         ))}
       </div>
