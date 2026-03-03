@@ -18,6 +18,16 @@ export default function Sidebar({
 
   return (
     <aside className="flex w-60 flex-col border-r border-[#E8E5E0] bg-[#F7F7F5]">
+      <div className="border-b border-[#E8E5E0] px-4 py-3">
+        <Link href="/workspaces" className="flex items-center gap-1.5">
+          <svg className="h-4 w-4 text-[#2383E2]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="8" width="10" height="32" rx="2" fill="currentColor" opacity="0.3" />
+            <rect x="19" y="8" width="10" height="24" rx="2" fill="currentColor" opacity="0.6" />
+            <rect x="34" y="8" width="10" height="16" rx="2" fill="currentColor" />
+          </svg>
+          <span className="text-sm font-bold text-[#37352F]">ShipBoard</span>
+        </Link>
+      </div>
       <div className="p-4">
         <Link
           href="/workspaces"

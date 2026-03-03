@@ -28,7 +28,6 @@ export default function TaskModal({
     task.labels.map((tl) => tl.label.id)
   );
   const [saving, setSaving] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState(false);
   const backdropRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -221,32 +220,12 @@ export default function TaskModal({
         </div>
 
         <div className="mt-6 flex items-center justify-between">
-          <div>
-            {confirmDelete ? (
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-[#EB5757]">This can&apos;t be undone.</span>
-                <button
-                  onClick={handleDelete}
-                  className="rounded bg-[#EB5757] px-3 py-1.5 text-sm font-medium text-white hover:bg-[#D14343]"
-                >
-                  Yes, delete
-                </button>
-                <button
-                  onClick={() => setConfirmDelete(false)}
-                  className="rounded px-3 py-1.5 text-sm text-[#787774] hover:bg-[#EFEFEF]"
-                >
-                  Cancel
-                </button>
-              </div>
-            ) : (
-              <button
-                onClick={() => setConfirmDelete(true)}
-                className="rounded px-3 py-1.5 text-sm text-[#EB5757] hover:bg-[#FBE9E9]"
-              >
-                Delete task
-              </button>
-            )}
-          </div>
+          <button
+            onClick={handleDelete}
+            className="rounded px-3 py-1.5 text-sm text-[#EB5757] hover:bg-[#FBE9E9]"
+          >
+            Delete task
+          </button>
 
           <div className="flex gap-2">
             <button

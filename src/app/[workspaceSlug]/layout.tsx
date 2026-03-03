@@ -37,8 +37,13 @@ export default async function WorkspaceLayout({
           <div className="flex items-center gap-2 text-sm">
             <Link
               href="/workspaces"
-              className="font-semibold text-[#37352F] transition-colors hover:text-[#2383E2]"
+              className="flex items-center gap-1.5 font-semibold text-[#37352F] transition-colors hover:text-[#2383E2]"
             >
+              <svg className="h-4 w-4 text-[#2383E2]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="8" width="10" height="32" rx="2" fill="currentColor" opacity="0.3" />
+                <rect x="19" y="8" width="10" height="24" rx="2" fill="currentColor" opacity="0.6" />
+                <rect x="34" y="8" width="10" height="16" rx="2" fill="currentColor" />
+              </svg>
               ShipBoard
             </Link>
             <span className="text-[#E8E5E0]">/</span>

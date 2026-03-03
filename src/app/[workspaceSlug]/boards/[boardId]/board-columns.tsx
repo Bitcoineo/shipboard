@@ -428,57 +428,56 @@ export default function BoardColumns({
                     Nothing here yet
                   </p>
                 )}
-              </DroppableColumn>
-
-              {/* Add task */}
-              <div className="px-3 pb-2">
-                {addingTaskColId === col.id ? (
-                  <div>
-                    <input
-                      ref={taskInputRef}
-                      value={newTaskTitle}
-                      onChange={(e) => setNewTaskTitle(e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") handleAddTask(col.id);
-                        if (e.key === "Escape") {
-                          setAddingTaskColId(null);
-                          setNewTaskTitle("");
-                        }
-                      }}
-                      placeholder="What needs to be done?"
-                      className="w-full rounded border border-[#E8E5E0] px-2 py-1.5 text-sm focus:border-[#2383E2] focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
-                    />
-                    <div className="mt-1.5 flex gap-2">
-                      <button
-                        onClick={() => handleAddTask(col.id)}
-                        disabled={addTaskLoading || !newTaskTitle.trim()}
-                        className="rounded bg-[#2383E2] px-3 py-1 text-sm font-medium text-white hover:bg-[#1B6EC2] disabled:opacity-50"
-                      >
-                        {addTaskLoading ? "Adding..." : "Add"}
-                      </button>
-                      <button
-                        onClick={() => {
-                          setAddingTaskColId(null);
-                          setNewTaskTitle("");
+                {/* Add task */}
+                <div className="pt-1">
+                  {addingTaskColId === col.id ? (
+                    <div>
+                      <input
+                        ref={taskInputRef}
+                        value={newTaskTitle}
+                        onChange={(e) => setNewTaskTitle(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") handleAddTask(col.id);
+                          if (e.key === "Escape") {
+                            setAddingTaskColId(null);
+                            setNewTaskTitle("");
+                          }
                         }}
-                        className="rounded px-3 py-1 text-sm text-[#787774] hover:bg-[#EFEFEF]"
-                      >
-                        Cancel
-                      </button>
+                        placeholder="What needs to be done?"
+                        className="w-full rounded border border-[#E8E5E0] px-2 py-1.5 text-sm focus:border-[#2383E2] focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
+                      />
+                      <div className="mt-1.5 flex gap-2">
+                        <button
+                          onClick={() => handleAddTask(col.id)}
+                          disabled={addTaskLoading || !newTaskTitle.trim()}
+                          className="rounded bg-[#2383E2] px-3 py-1 text-sm font-medium text-white hover:bg-[#1B6EC2] disabled:opacity-50"
+                        >
+                          {addTaskLoading ? "Adding..." : "Add"}
+                        </button>
+                        <button
+                          onClick={() => {
+                            setAddingTaskColId(null);
+                            setNewTaskTitle("");
+                          }}
+                          className="rounded px-3 py-1 text-sm text-[#787774] hover:bg-[#EFEFEF]"
+                        >
+                          Cancel
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <button
-                    onClick={() => {
-                      setAddingTaskColId(col.id);
-                      setNewTaskTitle("");
-                    }}
-                    className="w-full rounded py-1.5 text-sm text-[#9B9A97] hover:bg-[#EFEFEF] hover:text-[#787774]"
-                  >
-                    + Task
-                  </button>
-                )}
-              </div>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        setAddingTaskColId(col.id);
+                        setNewTaskTitle("");
+                      }}
+                      className="w-full rounded py-1.5 text-sm text-[#9B9A97] hover:bg-[#EFEFEF] hover:text-[#787774]"
+                    >
+                      + Task
+                    </button>
+                  )}
+                </div>
+              </DroppableColumn>
             </div>
           ))}
 

@@ -51,6 +51,87 @@ body {
   animation: modalIn 200ms ease-out both;
 }
 
+/* Kanban hero animation */
+@keyframes kanbanColumnIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes kanbanCardDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(3px);
+  }
+  80% {
+    transform: translateY(-1px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes kanbanCardFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes kanbanCardAppear {
+  from {
+    opacity: 0;
+    border-color: transparent;
+  }
+  to {
+    opacity: 1;
+    border-color: #2383E2;
+  }
+}
+
+@keyframes kanbanCheckPop {
+  from { transform: scale(0); }
+  60% { transform: scale(1.2); }
+  to { transform: scale(1); }
+}
+
+.kanban-col-1 { animation: kanbanColumnIn 400ms ease-out both; animation-delay: 0ms; }
+.kanban-col-2 { animation: kanbanColumnIn 400ms ease-out both; animation-delay: 200ms; }
+.kanban-col-3 { animation: kanbanColumnIn 400ms ease-out both; animation-delay: 400ms; }
+
+.kanban-card-1 { animation: kanbanCardDrop 350ms ease-out both; animation-delay: 700ms; }
+.kanban-card-2 { animation: kanbanCardDrop 350ms ease-out both; animation-delay: 800ms; }
+.kanban-card-3 { animation: kanbanCardDrop 350ms ease-out both; animation-delay: 900ms; }
+.kanban-card-4 { animation: kanbanCardDrop 350ms ease-out both; animation-delay: 1000ms; }
+.kanban-card-5 { animation: kanbanCardDrop 350ms ease-out both; animation-delay: 1100ms; }
+.kanban-card-6 { animation: kanbanCardDrop 350ms ease-out both; animation-delay: 1200ms; }
+.kanban-card-7 { animation: kanbanCardDrop 350ms ease-out both; animation-delay: 1300ms; }
+
+.kanban-card-source-fade {
+  animation: kanbanCardFadeOut 300ms ease-out both;
+  animation-delay: 1800ms;
+}
+
+.kanban-card-appear {
+  opacity: 0;
+  animation: kanbanCardAppear 400ms ease-out both;
+  animation-delay: 1800ms;
+}
+
+.kanban-check {
+  transform: scale(0);
+  animation: kanbanCheckPop 300ms ease-out both;
+  animation-delay: 2600ms;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
