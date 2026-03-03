@@ -425,7 +425,7 @@ export default function BoardColumns({
                 </SortableContext>
                 {col.tasks.length === 0 && !addingTaskColId && (
                   <p className="py-8 text-center text-xs text-[#9B9A97]">
-                    No tasks yet
+                    Nothing here yet
                   </p>
                 )}
               </DroppableColumn>
@@ -445,7 +445,7 @@ export default function BoardColumns({
                           setNewTaskTitle("");
                         }
                       }}
-                      placeholder="Task title"
+                      placeholder="What needs to be done?"
                       className="w-full rounded border border-[#E8E5E0] px-2 py-1.5 text-sm focus:border-[#2383E2] focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
                     />
                     <div className="mt-1.5 flex gap-2">
@@ -475,7 +475,7 @@ export default function BoardColumns({
                     }}
                     className="w-full rounded py-1.5 text-sm text-[#9B9A97] hover:bg-[#EFEFEF] hover:text-[#787774]"
                   >
-                    + Add task
+                    + Task
                   </button>
                 )}
               </div>
@@ -492,7 +492,7 @@ export default function BoardColumns({
                 <input
                   value={newColumnName}
                   onChange={(e) => setNewColumnName(e.target.value)}
-                  placeholder="Column name"
+                  placeholder="e.g. Review, Blocked"
                   autoFocus
                   required
                   className="w-full rounded border border-[#E8E5E0] px-3 py-1.5 text-sm focus:border-[#2383E2] focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
@@ -535,7 +535,7 @@ export default function BoardColumns({
                     d="M12 4.5v15m7.5-7.5h-15"
                   />
                 </svg>
-                Add Column
+                + Column
               </button>
             )}
           </div>

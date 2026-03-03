@@ -104,8 +104,7 @@ export default function TaskModal({
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 animate-fade-in"
     >
       <div className="mx-4 w-full max-w-lg rounded-md bg-white p-6 shadow-lg animate-modal-in">
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-[#37352F]">Task Details</h2>
+        <div className="mb-4 flex items-center justify-end">
           <button
             onClick={onClose}
             className="rounded p-1 text-[#9B9A97] hover:bg-[#EFEFEF] hover:text-[#787774]"
@@ -121,19 +120,20 @@ export default function TaskModal({
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              placeholder="Untitled"
               className="w-full rounded-md border-0 px-2 py-1.5 text-lg font-semibold text-[#37352F] hover:bg-[#F7F7F5] focus:bg-[#F7F7F5] focus:outline-none focus:ring-0"
             />
           </div>
 
           <div>
             <label className="mb-1 block text-sm font-medium text-[#787774]">
-              Description
+              Details
             </label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
-              placeholder="Add a description..."
+              placeholder="Add details..."
               className="w-full rounded-md border-0 px-2 py-1.5 text-sm text-[#37352F] hover:bg-[#F7F7F5] focus:bg-[#F7F7F5] focus:outline-none focus:ring-0"
             />
           </div>
@@ -158,7 +158,7 @@ export default function TaskModal({
 
             <div>
               <label className="mb-1 block text-sm font-medium text-[#787774]">
-                Due Date
+                Due
               </label>
               <input
                 type="date"
@@ -173,7 +173,7 @@ export default function TaskModal({
           {workspaceLabels.length > 0 && (
             <div>
               <label className="mb-1 block text-sm font-medium text-[#787774]">
-                Labels
+                Tags
               </label>
               <div className="flex flex-wrap gap-2">
                 {workspaceLabels.map((label) => {
@@ -201,7 +201,7 @@ export default function TaskModal({
           {task.assignee && (
             <div>
               <label className="mb-1 block text-sm font-medium text-[#787774]">
-                Assignee
+                Owner
               </label>
               <div className="flex items-center gap-2 rounded-lg border border-[#E8E5E0] bg-[#F7F7F5] px-3 py-2">
                 <div
@@ -224,7 +224,7 @@ export default function TaskModal({
           <div>
             {confirmDelete ? (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-[#EB5757]">Are you sure?</span>
+                <span className="text-sm text-[#EB5757]">This can&apos;t be undone.</span>
                 <button
                   onClick={handleDelete}
                   className="rounded bg-[#EB5757] px-3 py-1.5 text-sm font-medium text-white hover:bg-[#D14343]"

@@ -47,7 +47,7 @@ function RegisterForm() {
     });
 
     if (result?.error) {
-      setError("Account created but sign-in failed. Please log in.");
+      setError("Account created. Sign in to continue.");
       setLoading(false);
     } else {
       window.location.href = callbackUrl;
@@ -59,7 +59,7 @@ function RegisterForm() {
       <div className="w-full max-w-sm animate-fade-in-up">
         <div className="mb-8 text-center">
           <h1 className="text-2xl font-bold text-[#37352F]">ShipBoard</h1>
-          <p className="mt-1 text-sm text-[#787774]">Create your account</p>
+          <p className="mt-1 text-sm text-[#787774]">Create your account. It&apos;s free.</p>
         </div>
 
         <div className="rounded-md bg-white p-6">
@@ -119,7 +119,7 @@ function RegisterForm() {
               disabled={loading}
               className="w-full rounded-md bg-[#2383E2] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#1B6EC2] focus:outline-none focus:ring-2 focus:ring-[#2383E2] focus:ring-offset-2 disabled:opacity-50 active:scale-[0.98]"
             >
-              {loading ? "Creating account..." : "Create account"}
+              {loading ? "Setting things up..." : "Create account"}
             </button>
           </form>
 
@@ -160,7 +160,7 @@ function RegisterForm() {
         </div>
 
         <p className="mt-4 text-center text-sm text-[#787774]">
-          Already have an account?{" "}
+          Already have one?{" "}
           <Link href={callbackUrl !== "/workspaces" ? `/login?callbackUrl=${encodeURIComponent(callbackUrl)}` : "/login"} className="font-medium text-[#2383E2] hover:text-[#1B6EC2]">
             Sign in
           </Link>

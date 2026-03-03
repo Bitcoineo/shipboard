@@ -35,10 +35,9 @@ export default function DeleteWorkspace({
 
   return (
     <div className="mt-12 border-t border-[#F5D0D0] pt-8">
-      <h2 className="text-lg font-semibold text-[#EB5757]">Danger Zone</h2>
+      <h2 className="text-lg font-semibold text-[#EB5757]">Danger zone</h2>
       <p className="mt-1 text-sm text-[#787774]">
-        Permanently delete this workspace and all its boards, columns, and tasks.
-        This action cannot be undone.
+        Delete this workspace and everything in it. Boards, tasks, members — all gone. This can&apos;t be undone.
       </p>
 
       {!showConfirm ? (
@@ -46,12 +45,12 @@ export default function DeleteWorkspace({
           onClick={() => setShowConfirm(true)}
           className="mt-4 rounded-md border border-[#EB5757]/30 px-4 py-2 text-sm font-medium text-[#EB5757] transition-colors hover:bg-[#FBE9E9]"
         >
-          Delete Workspace
+          Delete workspace
         </button>
       ) : (
         <div className="mt-4 rounded-md border border-[#F5D0D0] bg-[#FBE9E9] p-4">
           <p className="text-sm text-[#37352F]">
-            Type <strong>{workspaceName}</strong> to confirm deletion:
+            Type the workspace name to confirm.
           </p>
           <input
             value={confirmText}
@@ -67,7 +66,7 @@ export default function DeleteWorkspace({
               disabled={confirmText !== workspaceName || deleting}
               className="rounded-md bg-[#EB5757] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#D14343] disabled:opacity-50"
             >
-              {deleting ? "Deleting..." : "Permanently Delete"}
+              {deleting ? "Deleting..." : "Delete forever"}
             </button>
             <button
               onClick={() => {

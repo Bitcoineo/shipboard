@@ -64,12 +64,12 @@ export default function WorkspaceList({
           </svg>
         </div>
         <h2 className="mt-4 text-lg font-semibold text-[#37352F]">No workspaces yet</h2>
-        <p className="mt-1 text-sm text-[#787774]">Create your first workspace to get started.</p>
+        <p className="mt-1 text-sm text-[#787774]">A workspace is where your team lives. Start one.</p>
         <button
           onClick={() => setShowForm(true)}
           className="mt-6 rounded-md bg-[#2383E2] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#1B6EC2]"
         >
-          Create Workspace
+          Create workspace
         </button>
       </div>
     );
@@ -78,13 +78,13 @@ export default function WorkspaceList({
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-[#37352F]">Your Workspaces</h2>
+        <h2 className="text-lg font-semibold text-[#37352F]">Workspaces</h2>
         {!showForm && (
           <button
             onClick={() => setShowForm(true)}
             className="rounded-md bg-[#2383E2] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#1B6EC2]"
           >
-            Create Workspace
+            New workspace
           </button>
         )}
       </div>
@@ -93,7 +93,7 @@ export default function WorkspaceList({
         <form onSubmit={handleCreate} className="mt-4 flex items-end gap-3 rounded-md border border-[#E8E5E0] bg-white p-4">
           <div className="flex-1">
             <label htmlFor="workspace-name" className="block text-sm font-medium text-[#37352F]">
-              Workspace name
+              Name
             </label>
             <input
               id="workspace-name"
@@ -102,7 +102,7 @@ export default function WorkspaceList({
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="mt-1 block w-full rounded-md border border-[#E8E5E0] px-3 py-2 text-sm text-[#37352F] focus:border-[#2383E2] focus:outline-none focus:ring-2 focus:ring-[#2383E2]"
-              placeholder="My Team"
+              placeholder="e.g. Marketing, Engineering"
               autoFocus
             />
             {error && <p className="mt-1 text-sm text-[#EB5757]">{error}</p>}

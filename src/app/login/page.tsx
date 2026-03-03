@@ -33,7 +33,7 @@ function LoginForm() {
     });
 
     if (result?.error) {
-      setError("Invalid email or password");
+      setError("Wrong email or password. Try again.");
       setLoading(false);
     } else {
       window.location.href = callbackUrl;
@@ -45,7 +45,7 @@ function LoginForm() {
       <div className="w-full max-w-sm animate-fade-in-up">
         <div className="mb-8 text-center">
           <h1 className="text-2xl font-bold text-[#37352F]">ShipBoard</h1>
-          <p className="mt-1 text-sm text-[#787774]">Sign in to your account</p>
+          <p className="mt-1 text-sm text-[#787774]">Welcome back.</p>
         </div>
 
         <div className="rounded-md bg-white p-6">
@@ -89,7 +89,7 @@ function LoginForm() {
               disabled={loading}
               className="w-full rounded-md bg-[#2383E2] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#1B6EC2] focus:outline-none focus:ring-2 focus:ring-[#2383E2] focus:ring-offset-2 disabled:opacity-50 active:scale-[0.98]"
             >
-              {loading ? "Signing in..." : "Sign in"}
+              {loading ? "One moment..." : "Continue"}
             </button>
           </form>
 
@@ -130,7 +130,7 @@ function LoginForm() {
         </div>
 
         <p className="mt-4 text-center text-sm text-[#787774]">
-          Don&apos;t have an account?{" "}
+          First time here?{" "}
           <Link href={callbackUrl !== "/workspaces" ? `/register?callbackUrl=${encodeURIComponent(callbackUrl)}` : "/register"} className="font-medium text-[#2383E2] hover:text-[#1B6EC2]">
             Sign up
           </Link>

@@ -58,12 +58,12 @@ export default function BoardList({
           </svg>
         </div>
         <h2 className="mt-4 text-lg font-semibold text-[#37352F]">No boards yet</h2>
-        <p className="mt-1 text-sm text-[#787774]">Create your first board to start organizing tasks.</p>
+        <p className="mt-1 text-sm text-[#787774]">A board holds your tasks. One per project works well.</p>
         <button
           onClick={() => setShowForm(true)}
           className="mt-6 rounded-md bg-[#2383E2] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#1B6EC2]"
         >
-          New Board
+          Create board
         </button>
       </div>
     );
@@ -78,7 +78,7 @@ export default function BoardList({
             onClick={() => setShowForm(true)}
             className="rounded-md bg-[#2383E2] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#1B6EC2]"
           >
-            New Board
+            New board
           </button>
         )}
       </div>
@@ -87,7 +87,7 @@ export default function BoardList({
         <form onSubmit={handleCreate} className="mt-4 flex items-end gap-3 rounded-md border border-[#E8E5E0] bg-white p-4">
           <div className="flex-1">
             <label htmlFor="board-name" className="block text-sm font-medium text-[#37352F]">
-              Board name
+              Name
             </label>
             <input
               id="board-name"
@@ -96,7 +96,7 @@ export default function BoardList({
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="mt-1 block w-full rounded-md border border-[#E8E5E0] px-3 py-2 text-sm text-[#37352F] focus:border-[#2383E2] focus:outline-none focus:ring-2 focus:ring-[#2383E2]"
-              placeholder="Product Roadmap"
+              placeholder="e.g. Product Roadmap, Sprint 12"
               autoFocus
             />
             {error && <p className="mt-1 text-sm text-[#EB5757]">{error}</p>}

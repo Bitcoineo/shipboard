@@ -199,39 +199,27 @@ export default function MemberList({
               onClick={() => setShowInvite(true)}
               className="rounded-md bg-[#2383E2] px-4 py-2 text-sm font-medium text-white hover:bg-[#1B6EC2]"
             >
-              Invite Member
+              Invite member
             </button>
           ) : (
             <div className="rounded-md border border-[#E8E5E0] bg-white p-4">
               <h3 className="text-sm font-semibold text-[#37352F]">
-                Invite a new member
+                Invite
               </h3>
               <form onSubmit={handleInvite} className="mt-3 flex items-end gap-3">
                 <div className="flex-1">
-                  <label
-                    htmlFor="invite-email"
-                    className="block text-sm font-medium text-[#37352F]"
-                  >
-                    Email
-                  </label>
                   <input
                     id="invite-email"
                     type="email"
                     required
                     value={inviteEmail}
                     onChange={(e) => setInviteEmail(e.target.value)}
-                    className="mt-1 block w-full rounded-md border border-[#E8E5E0] px-3 py-2 text-sm focus:border-[#2383E2] focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
-                    placeholder="colleague@example.com"
+                    className="block w-full rounded-md border border-[#E8E5E0] px-3 py-2 text-sm focus:border-[#2383E2] focus:outline-none focus:ring-1 focus:ring-[#2383E2]"
+                    placeholder="Email address"
                     autoFocus
                   />
                 </div>
                 <div>
-                  <label
-                    htmlFor="invite-role"
-                    className="block text-sm font-medium text-[#37352F]"
-                  >
-                    Role
-                  </label>
                   <select
                     id="invite-role"
                     value={inviteRole}
@@ -249,7 +237,7 @@ export default function MemberList({
                   disabled={inviteLoading}
                   className="rounded-md bg-[#2383E2] px-4 py-2 text-sm font-medium text-white hover:bg-[#1B6EC2] disabled:opacity-50"
                 >
-                  {inviteLoading ? "Sending..." : "Send Invite"}
+                  {inviteLoading ? "Sending..." : "Send invite"}
                 </button>
                 <button
                   type="button"
@@ -269,7 +257,7 @@ export default function MemberList({
               {inviteLink && (
                 <div className="mt-3 rounded-md bg-[#E8F5F1] border border-[#C2E5DC] p-3">
                   <p className="text-sm text-[#4DAB9A]">
-                    Invite created! Share this link:
+                    Invite sent. Share the link.
                   </p>
                   <div className="mt-1 flex items-center gap-2">
                     <code className="flex-1 truncate rounded bg-white px-2 py-1 text-xs text-[#37352F] border border-[#C2E5DC]">
@@ -279,7 +267,7 @@ export default function MemberList({
                       onClick={() => copyToClipboard(inviteLink)}
                       className="rounded bg-[#2383E2] px-3 py-1 text-xs font-medium text-white hover:bg-[#1B6EC2]"
                     >
-                      Copy
+                      Copy link
                     </button>
                   </div>
                 </div>
@@ -436,7 +424,7 @@ export default function MemberList({
                 onClick={() => setShowLabelForm(true)}
                 className="rounded-md bg-[#2383E2] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#1B6EC2]"
               >
-                New Label
+                New label
               </button>
             )}
           </div>

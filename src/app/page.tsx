@@ -44,18 +44,17 @@ export default async function Home() {
             </svg>
           </div>
           <h1 className="text-5xl font-bold tracking-tight text-[#37352F]">
-            Plan. Track. Ship.
+            Your team&apos;s work. One board.
           </h1>
           <p className="mt-4 text-lg text-[#787774]">
-            A project board for teams that value clarity over clutter.
-            Organize tasks, collaborate with your team, and ship what matters.
+            See every task, who owns it, and what&apos;s blocking it — without a single status meeting.
           </p>
           <div className="mt-8 flex items-center justify-center gap-4">
             <Link
               href="/register"
               className="rounded-md bg-[#2383E2] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#1B6EC2] active:scale-[0.98]"
             >
-              Get started — it&apos;s free
+              Start for free
             </Link>
             <Link
               href="/login"
@@ -68,7 +67,7 @@ export default async function Home() {
       </main>
 
       <footer className="border-t border-[#E8E5E0] px-6 py-6 text-center text-xs text-[#9B9A97]">
-        ShipBoard &mdash; Team task &amp; project management
+        Built by Bitcoineo
       </footer>
     </div>
   );
