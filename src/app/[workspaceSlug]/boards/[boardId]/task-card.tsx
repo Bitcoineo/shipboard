@@ -40,9 +40,13 @@ export interface TaskData {
 export default function TaskCard({
   task,
   onClick,
+  isSelected,
+  onSelect,
 }: {
   task: TaskData;
   onClick: () => void;
+  isSelected?: boolean;
+  onSelect?: (e: React.MouseEvent) => void;
 }) {
   const {
     attributes,
@@ -67,11 +71,40 @@ export default function TaskCard({
       style={style}
       {...attributes}
       {...listeners}
-      onClick={onClick}
-      className={`cursor-pointer rounded-md border border-[#E8E5E0] bg-white p-2.5 transition-colors hover:bg-[#F7F7F5] ${
-        isDragging ? "shadow-md scale-[1.02]" : ""
-      } ${task.priority !== "none" ? `border-l-2 ${PRIORITY_BORDER_COLORS[task.priority] || ""}` : ""}`}
+      onClick={(e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey) {
+          onSelect?.(e);
+        } else {
+          onClick();
+        }
+      }}
+      className={`group relative cursor-pointer rounded-md border p-2.5 transition-colors ${
+        isSelected
+          ? "border-[#2383E2] bg-[#EBF5FF]"
+          : "border-[#E8E5E0] bg-white hover:bg-[#F7F7F5]"
+      } ${isDragging ? "shadow-md scale-[1.02]" : ""} ${
+        task.priority !== "none" ? `border-l-2 ${PRIORITY_BORDER_COLORS[task.priority] || ""}` : ""
+      }`}
     >
+      {/* Selection checkbox */}
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+          onSelect?.(e);
+        }}
+        className={`absolute -left-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full border-2 transition-opacity ${
+          isSelected
+            ? "border-[#2383E2] bg-[#2383E2] opacity-100"
+            : "border-[#D3D1CB] bg-white opacity-0 group-hover:opacity-100"
+        }`}
+      >
+        {isSelected && (
+          <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+        )}
+      </div>
+
       {task.labels.length > 0 && (
         <div className="mb-1.5 flex items-center gap-1">
           {task.labels.map((tl) => (

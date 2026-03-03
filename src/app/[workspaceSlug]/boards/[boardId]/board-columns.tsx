@@ -77,6 +77,8 @@ export default function BoardColumns({
   const [addTaskLoading, setAddTaskLoading] = useState(false);
   const [activeTask, setActiveTask] = useState<TaskData | null>(null);
   const [selectedTask, setSelectedTask] = useState<TaskData | null>(null);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const lastSelectedRef = useRef<string | null>(null);
   const editInputRef = useRef<HTMLInputElement>(null);
   const taskInputRef = useRef<HTMLInputElement>(null);
 
@@ -206,6 +208,72 @@ export default function BoardColumns({
     setSelectedTask(null);
   }
 
+  // ─── Multi-select & bulk delete ─────────────────────────────────────
+  function handleSelect(task: TaskData, columnId: string, e: React.MouseEvent) {
+    if (e.shiftKey && lastSelectedRef.current) {
+      const col = columnsData.find((c) => c.id === columnId);
+      if (col) {
+        const taskIds = col.tasks.map((t) => t.id);
+        const lastIdx = taskIds.indexOf(lastSelectedRef.current);
+        const curIdx = taskIds.indexOf(task.id);
+        if (lastIdx !== -1 && curIdx !== -1) {
+          const [start, end] = [Math.min(lastIdx, curIdx), Math.max(lastIdx, curIdx)];
+          const rangeIds = taskIds.slice(start, end + 1);
+          setSelectedIds((prev) => {
+            const next = new Set(prev);
+            rangeIds.forEach((id) => next.add(id));
+            return next;
+          });
+        }
+      }
+    } else {
+      setSelectedIds((prev) => {
+        const next = new Set(prev);
+        if (next.has(task.id)) next.delete(task.id);
+        else next.add(task.id);
+        return next;
+      });
+      lastSelectedRef.current = task.id;
+    }
+  }
+
+  async function handleBulkDelete() {
+    const idsToDelete = Array.from(selectedIds);
+    setColumnsData((prev) =>
+      prev.map((col) => ({
+        ...col,
+        tasks: col.tasks.filter((t) => !selectedIds.has(t.id)),
+      }))
+    );
+    setSelectedIds(new Set());
+    const results = await Promise.all(
+      idsToDelete.map((id) =>
+        fetch(`${apiBase}/tasks/${id}`, { method: "DELETE" })
+      )
+    );
+    if (results.some((r) => !r.ok)) router.refresh();
+  }
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (selectedIds.size === 0) return;
+      if (e.key === "Escape") {
+        setSelectedIds(new Set());
+        return;
+      }
+      if (e.key === "Delete" || e.key === "Backspace") {
+        // Don't intercept when typing in an input/textarea
+        const tag = (e.target as HTMLElement)?.tagName;
+        if (tag === "INPUT" || tag === "TEXTAREA") return;
+        e.preventDefault();
+        handleBulkDelete();
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedIds]);
+
   // ─── Drag-and-drop ──────────────────────────────────────────────────
   function findColumnByTaskId(taskId: string): string | null {
     for (const col of columnsData) {
@@ -215,6 +283,7 @@ export default function BoardColumns({
   }
 
   function handleDragStart(event: DragStartEvent) {
+    setSelectedIds(new Set());
     const task = event.active.data.current?.task as TaskData | undefined;
     if (task) setActiveTask(task);
   }
@@ -342,7 +411,12 @@ export default function BoardColumns({
         onDragOver={handleDragOver}
         onDragEnd={handleDragEnd}
       >
-        <div className="flex flex-1 gap-4 overflow-x-auto pb-4">
+        <div
+          className="flex flex-1 gap-4 overflow-x-auto pb-4"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setSelectedIds(new Set());
+          }}
+        >
           {columnsData.map((col) => (
             <div
               key={col.id}
@@ -418,7 +492,12 @@ export default function BoardColumns({
                       <TaskCard
                         key={task.id}
                         task={task}
-                        onClick={() => setSelectedTask(task)}
+                        isSelected={selectedIds.has(task.id)}
+                        onClick={() => {
+                          setSelectedIds(new Set());
+                          setSelectedTask(task);
+                        }}
+                        onSelect={(e) => handleSelect(task, col.id, e)}
                       />
                     ))}
                   </div>
@@ -550,6 +629,26 @@ export default function BoardColumns({
           ) : null}
         </DragOverlay>
       </DndContext>
+
+      {selectedIds.size > 0 && (
+        <div className="animate-slide-up fixed bottom-6 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-lg border border-[#E8E5E0] bg-white px-4 py-2.5 shadow-lg">
+          <span className="text-sm font-medium text-[#37352F]">
+            {selectedIds.size} task{selectedIds.size !== 1 ? "s" : ""} selected
+          </span>
+          <button
+            onClick={handleBulkDelete}
+            className="rounded px-3 py-1.5 text-sm font-medium text-[#EB5757] hover:bg-[#FBE9E9]"
+          >
+            Delete
+          </button>
+          <button
+            onClick={() => setSelectedIds(new Set())}
+            className="rounded px-3 py-1.5 text-sm text-[#787774] hover:bg-[#EFEFEF]"
+          >
+            Clear
+          </button>
+        </div>
+      )}
 
       {selectedTask && (
         <TaskModal

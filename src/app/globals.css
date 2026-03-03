@@ -132,6 +132,15 @@ body {
   animation-delay: 2600ms;
 }
 
+/* Floating bar slide-up */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slideUp 150ms ease-out both;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
