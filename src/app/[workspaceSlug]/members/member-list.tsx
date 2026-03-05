@@ -207,7 +207,7 @@ export default function MemberList({
               <h3 className="text-sm font-semibold text-[#2D2D2D]">
                 Invite
               </h3>
-              <form onSubmit={handleInvite} className="mt-3 flex items-end gap-3">
+              <form onSubmit={handleInvite} className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-end">
                 <div className="flex-1">
                   <input
                     id="invite-email"
@@ -233,24 +233,26 @@ export default function MemberList({
                     <option value="admin">Admin</option>
                   </select>
                 </div>
-                <button
-                  type="submit"
-                  disabled={inviteLoading}
-                  className="rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white transition-all duration-150 hover:bg-[#4338CA] hover:shadow-md active:scale-[0.97] disabled:opacity-50"
-                >
-                  {inviteLoading ? "Sending..." : "Send invite"}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowInvite(false);
-                    setInviteError("");
-                    setInviteLink("");
-                  }}
-                  className="rounded-md border border-[#EEEEED] px-4 py-2.5 text-sm text-[#6B6B6B] transition-all duration-150 hover:bg-[#F8F8F7] hover:shadow-sm active:scale-[0.97]"
-                >
-                  Cancel
-                </button>
+                <div className="flex gap-3 w-full sm:w-auto">
+                  <button
+                    type="submit"
+                    disabled={inviteLoading}
+                    className="flex-1 sm:flex-none rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white transition-all duration-150 hover:bg-[#4338CA] hover:shadow-md active:scale-[0.97] disabled:opacity-50"
+                  >
+                    {inviteLoading ? "Sending..." : "Send invite"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowInvite(false);
+                      setInviteError("");
+                      setInviteLink("");
+                    }}
+                    className="flex-1 sm:flex-none rounded-md border border-[#EEEEED] px-4 py-2.5 text-sm text-[#6B6B6B] transition-all duration-150 hover:bg-[#F8F8F7] hover:shadow-sm active:scale-[0.97]"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </form>
               {inviteError && (
                 <p className="mt-2 text-sm text-[#EB5757]">{inviteError}</p>
@@ -330,7 +332,7 @@ export default function MemberList({
           {members.map((m) => (
             <div
               key={m.id}
-              className="flex items-center justify-between rounded-md border border-[#EEEEED] bg-white px-4 py-3"
+              className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between rounded-md border border-[#EEEEED] bg-white px-4 py-3"
             >
               <div className="flex items-center gap-3">
                 <div
@@ -352,7 +354,7 @@ export default function MemberList({
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 justify-end sm:justify-start">
                 {/* Role badge or selector */}
                 {isOwner && m.role !== "owner" ? (
                   <select
@@ -435,8 +437,8 @@ export default function MemberList({
               onSubmit={handleCreateLabel}
               className="mt-3 rounded-md border border-[#EEEEED] bg-white p-4"
             >
-              <div className="flex items-end gap-3">
-                <div className="flex-1">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+                <div className="w-full sm:flex-1">
                   <label
                     htmlFor="label-name"
                     className="block text-sm font-medium text-[#2D2D2D]"
@@ -454,29 +456,31 @@ export default function MemberList({
                     autoFocus
                   />
                 </div>
-                <button
-                  type="submit"
-                  disabled={labelLoading || !labelName.trim()}
-                  className="rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white transition-all duration-150 hover:bg-[#4338CA] hover:shadow-md active:scale-[0.97] disabled:opacity-50"
-                >
-                  {labelLoading ? "Creating..." : "Create"}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowLabelForm(false);
-                    setLabelName("");
-                  }}
-                  className="rounded-md border border-[#EEEEED] px-4 py-2.5 text-sm text-[#6B6B6B] transition-all duration-150 hover:bg-[#F8F8F7] hover:shadow-sm active:scale-[0.97]"
-                >
-                  Cancel
-                </button>
+                <div className="flex gap-3 w-full sm:w-auto">
+                  <button
+                    type="submit"
+                    disabled={labelLoading || !labelName.trim()}
+                    className="flex-1 sm:flex-none rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white transition-all duration-150 hover:bg-[#4338CA] hover:shadow-md active:scale-[0.97] disabled:opacity-50"
+                  >
+                    {labelLoading ? "Creating..." : "Create"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowLabelForm(false);
+                      setLabelName("");
+                    }}
+                    className="flex-1 sm:flex-none rounded-md border border-[#EEEEED] px-4 py-2.5 text-sm text-[#6B6B6B] transition-all duration-150 hover:bg-[#F8F8F7] hover:shadow-sm active:scale-[0.97]"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
               <div className="mt-3">
                 <label className="block text-sm font-medium text-[#2D2D2D]">
                   Color
                 </label>
-                <div className="mt-1.5 flex gap-2">
+                <div className="mt-1.5 flex flex-wrap gap-2">
                   {PRESET_COLORS.map((c) => (
                     <button
                       key={c.value}

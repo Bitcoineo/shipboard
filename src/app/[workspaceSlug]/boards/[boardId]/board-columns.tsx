@@ -642,7 +642,7 @@ export default function BoardColumns({
       </DndContext>
 
       {selectedIds.size > 0 && (
-        <div className="animate-slide-up fixed bottom-6 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-lg border border-[#EEEEED] bg-white/95 backdrop-blur-sm px-4 py-2.5 shadow-lg">
+        <div className="animate-slide-up fixed bottom-6 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 z-40 flex items-center justify-center gap-3 rounded-lg border border-[#EEEEED] bg-white/95 backdrop-blur-sm px-4 py-2.5 shadow-lg">
           <span className="text-sm font-medium text-[#2D2D2D]">
             {selectedIds.size} task{selectedIds.size !== 1 ? "s" : ""} selected
           </span>

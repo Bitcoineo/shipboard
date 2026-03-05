@@ -84,8 +84,8 @@ export default function BoardList({
       </div>
 
       {showForm && (
-        <form onSubmit={handleCreate} className="mt-4 flex items-end gap-3 rounded-md border border-[#EEEEED] bg-white p-4">
-          <div className="flex-1">
+        <form onSubmit={handleCreate} className="mt-4 flex flex-col sm:flex-row sm:items-end gap-3 rounded-md border border-[#EEEEED] bg-white p-4">
+          <div className="w-full sm:flex-1">
             <label htmlFor="board-name" className="block text-sm font-medium text-[#2D2D2D]">
               Name
             </label>
@@ -101,20 +101,22 @@ export default function BoardList({
             />
             {error && <p className="mt-1 text-sm text-[#EB5757]">{error}</p>}
           </div>
-          <button
-            type="submit"
-            disabled={loading}
-            className="rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white transition-all duration-150 hover:bg-[#4338CA] hover:shadow-md active:scale-[0.97] disabled:opacity-50"
-          >
-            {loading ? "Creating..." : "Create"}
-          </button>
-          <button
-            type="button"
-            onClick={() => { setShowForm(false); setError(""); setName(""); }}
-            className="rounded-md border border-[#EEEEED] px-4 py-2.5 text-sm text-[#6B6B6B] transition-all duration-150 hover:bg-[#F8F8F7] hover:shadow-sm active:scale-[0.97]"
-          >
-            Cancel
-          </button>
+          <div className="flex gap-3 w-full sm:w-auto">
+            <button
+              type="submit"
+              disabled={loading}
+              className="flex-1 sm:flex-none rounded-md bg-[#4F46E5] px-4 py-2.5 text-sm font-medium text-white transition-all duration-150 hover:bg-[#4338CA] hover:shadow-md active:scale-[0.97] disabled:opacity-50"
+            >
+              {loading ? "Creating..." : "Create"}
+            </button>
+            <button
+              type="button"
+              onClick={() => { setShowForm(false); setError(""); setName(""); }}
+              className="flex-1 sm:flex-none rounded-md border border-[#EEEEED] px-4 py-2.5 text-sm text-[#6B6B6B] transition-all duration-150 hover:bg-[#F8F8F7] hover:shadow-sm active:scale-[0.97]"
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       )}
 

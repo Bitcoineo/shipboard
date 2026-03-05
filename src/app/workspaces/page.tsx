@@ -12,7 +12,7 @@ export default async function WorkspacesPage() {
 
   return (
     <div className="min-h-screen bg-[#F8F8F7]">
-      <header className="border-b border-[#EEEEED] bg-white px-6 py-4">
+      <header className="border-b border-[#EEEEED] bg-white px-4 sm:px-6 py-4">
         <div className="mx-auto flex max-w-5xl items-center justify-between">
           <Link href="/workspaces" className="flex items-center gap-1.5">
             <svg className="h-5 w-5 text-[#4F46E5]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,7 +23,7 @@ export default async function WorkspacesPage() {
             <span className="text-xl font-semibold text-[#2D2D2D]">ShipBoard</span>
           </Link>
           <div className="flex items-center gap-3">
-            <span className="text-sm text-[#6B6B6B]">{session.user.email}</span>
+            <span className="hidden sm:inline text-sm text-[#6B6B6B]">{session.user.email}</span>
             <form
               action={async () => {
                 "use server";
@@ -40,7 +40,7 @@ export default async function WorkspacesPage() {
           </div>
         </div>
       </header>
-      <main className="mx-auto max-w-5xl px-6 py-8">
+      <main className="mx-auto max-w-5xl px-4 sm:px-6 py-8">
         <WorkspaceList initialWorkspaces={workspaces ?? []} />
       </main>
     </div>

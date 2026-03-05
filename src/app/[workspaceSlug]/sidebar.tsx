@@ -7,12 +7,14 @@ interface SidebarProps {
   workspaceName: string;
   workspaceSlug: string;
   boards: Array<{ id: string; name: string }>;
+  onNavigate?: () => void;
 }
 
 export default function Sidebar({
   workspaceName,
   workspaceSlug,
   boards,
+  onNavigate,
 }: SidebarProps) {
   const pathname = usePathname();
 
@@ -23,7 +25,7 @@ export default function Sidebar({
     <aside className="flex w-64 flex-col border-r border-[#EEEEED] bg-[#F8F8F7]">
       {/* Logo */}
       <div className="border-b border-[#EEEEED] px-4 py-3">
-        <Link href="/workspaces" className="flex items-center gap-1.5">
+        <Link href="/workspaces" className="flex items-center gap-1.5" onClick={onNavigate}>
           <svg className="h-4 w-4 text-[#4F46E5]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="4" y="8" width="10" height="32" rx="2" fill="currentColor" opacity="0.3" />
             <rect x="19" y="8" width="10" height="24" rx="2" fill="currentColor" opacity="0.6" />
@@ -34,7 +36,7 @@ export default function Sidebar({
       </div>
 
       {/* Workspace header */}
-      <div className="p-4">
+      <div className="relative p-4">
         <Link
           href="/workspaces"
           className="flex items-center gap-1 text-xs text-[#A3A3A3] transition-colors hover:text-[#2D2D2D]"
@@ -44,6 +46,17 @@ export default function Sidebar({
           </svg>
           All Workspaces
         </Link>
+        {onNavigate && (
+          <button
+            onClick={onNavigate}
+            className="absolute right-4 top-4 rounded p-1 text-[#A3A3A3] hover:bg-[#F0F0EF] hover:text-[#6B6B6B] md:hidden"
+            aria-label="Close sidebar"
+          >
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        )}
         <h2 className="mt-3 truncate text-sm font-semibold text-[#2D2D2D]">
           {workspaceName}
         </h2>
@@ -68,6 +81,7 @@ export default function Sidebar({
                 <li key={board.id}>
                   <Link
                     href={boardPath}
+                    onClick={onNavigate}
                     className={`flex items-center gap-2 rounded-md py-2 text-sm transition-all duration-120 ${
                       isActive
                         ? "translate-x-0.5 border-l-[3px] border-[#4F46E5] bg-white pl-[calc(0.5rem-3px)] pr-2 font-medium text-[#4F46E5]"
@@ -91,6 +105,7 @@ export default function Sidebar({
             <li>
               <Link
                 href={`/${workspaceSlug}/members`}
+                onClick={onNavigate}
                 className={`flex items-center gap-2 rounded-md py-2 text-sm transition-all duration-120 ${
                   membersActive
                     ? "translate-x-0.5 border-l-[3px] border-[#4F46E5] bg-white pl-[calc(0.5rem-3px)] pr-2 font-medium text-[#4F46E5]"
@@ -106,6 +121,7 @@ export default function Sidebar({
             <li>
               <Link
                 href={`/${workspaceSlug}/settings`}
+                onClick={onNavigate}
                 className={`flex items-center gap-2 rounded-md py-2 text-sm transition-all duration-120 ${
                   settingsActive
                     ? "translate-x-0.5 border-l-[3px] border-[#4F46E5] bg-white pl-[calc(0.5rem-3px)] pr-2 font-medium text-[#4F46E5]"

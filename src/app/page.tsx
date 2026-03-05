@@ -11,7 +11,7 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="flex items-center justify-between px-6 py-4">
+      <header className="flex items-center justify-between px-4 sm:px-6 py-4">
         <Link href="/" className="flex items-center gap-1.5">
           <svg className="h-5 w-5 text-[#4F46E5]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="4" y="8" width="10" height="32" rx="2" fill="currentColor" opacity="0.3" />
@@ -23,37 +23,37 @@ export default async function Home() {
         <div className="flex items-center gap-3">
           <Link
             href="/login"
-            className="rounded-md border border-[#EEEEED] px-4 py-2 text-sm font-medium text-[#2D2D2D] transition-colors hover:bg-[#F8F8F7]"
+            className="rounded-md border border-[#EEEEED] px-3 py-1.5 sm:px-4 sm:py-2 text-sm font-medium text-[#2D2D2D] transition-colors hover:bg-[#F8F8F7]"
           >
             Sign in
           </Link>
           <Link
             href="/register"
-            className="rounded-md bg-[#4F46E5] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#4338CA]"
+            className="rounded-md bg-[#4F46E5] px-3 py-1.5 sm:px-4 sm:py-2 text-sm font-medium text-white transition-colors hover:bg-[#4338CA]"
           >
             Get started
           </Link>
         </div>
       </header>
 
-      <main className="flex flex-1 flex-col items-center justify-center px-6 pb-16">
+      <main className="flex flex-1 flex-col items-center justify-center px-4 sm:px-6 pb-16">
         <div className="mx-auto max-w-2xl animate-fade-in-up text-center">
-          <h1 className="text-5xl font-bold tracking-tight text-[#2D2D2D]">
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#2D2D2D]">
             Your team&apos;s work. One board.
           </h1>
-          <p className="mt-4 text-lg text-[#6B6B6B]">
+          <p className="mt-4 text-base sm:text-lg text-[#6B6B6B]">
             See what&apos;s happening, who&apos;s on it, and what&apos;s next.
           </p>
-          <div className="mt-8 flex items-center justify-center gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Link
               href="/register"
-              className="rounded-md bg-[#4F46E5] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#4338CA] active:scale-[0.98]"
+              className="w-full sm:w-auto text-center rounded-md bg-[#4F46E5] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#4338CA] active:scale-[0.98]"
             >
               Start for free
             </Link>
             <Link
               href="/login"
-              className="rounded-md border border-[#EEEEED] px-6 py-3 text-sm font-medium text-[#2D2D2D] transition-colors hover:bg-[#F8F8F7]"
+              className="w-full sm:w-auto text-center rounded-md border border-[#EEEEED] px-6 py-3 text-sm font-medium text-[#2D2D2D] transition-colors hover:bg-[#F8F8F7]"
             >
               Sign in
             </Link>
@@ -232,18 +232,18 @@ export default async function Home() {
       </main>
 
       {/* CTA band */}
-      <section className="bg-[#2D2D2D] px-6 py-16 text-center">
-        <h2 className="text-2xl font-bold text-white">Your first board takes 30 seconds.</h2>
+      <section className="bg-[#2D2D2D] px-4 sm:px-6 py-16 text-center">
+        <h2 className="text-xl sm:text-2xl font-bold text-white">Your first board takes 30 seconds.</h2>
         <Link
           href="/register"
-          className="mt-6 inline-block rounded-md bg-[#4F46E5] px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#4338CA] active:scale-[0.98]"
+          className="mt-6 inline-block w-full max-w-xs sm:w-auto mx-auto sm:mx-0 text-center rounded-md bg-[#4F46E5] px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#4338CA] active:scale-[0.98]"
         >
           Start for free
         </Link>
       </section>
 
-      <footer className="border-t border-[#EEEEED] px-6 py-6">
-        <div className="flex items-center justify-center gap-3 text-sm text-[#A3A3A3]">
+      <footer className="border-t border-[#EEEEED] px-4 sm:px-6 py-6">
+        <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-[#A3A3A3]">
           <span>Built by Bitcoineo</span>
           <a href="https://github.com/Bitcoineo" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[#2D2D2D]">
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" /></svg>

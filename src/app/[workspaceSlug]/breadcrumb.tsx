@@ -21,7 +21,7 @@ export default function WorkspaceBreadcrumb({
     : null;
 
   return (
-    <div className="flex items-center gap-2 text-sm">
+    <div className="flex min-w-0 items-center gap-2 text-sm">
       <Link
         href="/workspaces"
         className="flex items-center gap-1.5 font-semibold text-[#2D2D2D] transition-colors hover:text-[#4F46E5]"
@@ -43,12 +43,13 @@ export default function WorkspaceBreadcrumb({
         href={`/${workspaceSlug}`}
         className="font-medium text-[#6B6B6B] transition-colors hover:text-[#2D2D2D]"
       >
-        {workspaceName}
+        <span className="hidden sm:inline">{workspaceName}</span>
+        <span className="sm:hidden">...</span>
       </Link>
       {activeBoard && (
         <>
           <span className="text-[#EEEEED]">/</span>
-          <span className="font-medium text-[#2D2D2D]">
+          <span className="truncate max-w-[150px] sm:max-w-none font-medium text-[#2D2D2D]">
             {activeBoard.name}
           </span>
         </>
