@@ -104,7 +104,7 @@ export default function TaskModal({
       }}
       className="fixed inset-0 z-50 flex items-end sm:items-center sm:justify-center bg-black/40 animate-fade-in"
     >
-      <div className="h-[85vh] sm:h-auto w-full sm:mx-4 sm:max-w-lg rounded-t-xl sm:rounded-md bg-white p-4 sm:p-6 shadow-lg animate-modal-in overflow-y-auto">
+      <div className="max-h-[85vh] sm:h-auto w-full sm:mx-4 sm:max-w-lg rounded-t-xl sm:rounded-md bg-white p-4 sm:p-6 shadow-lg animate-modal-in overflow-y-auto">
         {/* Header: Saved indicator + close button */}
         <div className="mb-4 flex items-center justify-end gap-3">
           <span

@@ -25,10 +25,12 @@ export default async function WorkspaceLayout({
 
   const { data: boards } = await getWorkspaceBoards(workspace.id);
 
+  const boardList = (boards ?? []).map((b) => ({ id: b.id, name: b.name }));
+
   const sidebarProps = {
     workspaceName: workspace.name,
     workspaceSlug: params.workspaceSlug,
-    boards: (boards ?? []).map((b) => ({ id: b.id, name: b.name })),
+    boards: boardList,
   };
 
   return (
@@ -39,7 +41,7 @@ export default async function WorkspaceLayout({
             <WorkspaceBreadcrumb
               workspaceSlug={params.workspaceSlug}
               workspaceName={workspace.name}
-              boards={(boards ?? []).map((b) => ({ id: b.id, name: b.name }))}
+              boards={boardList}
             />
             <div className="flex items-center gap-2">
               <div
@@ -59,7 +61,7 @@ export default async function WorkspaceLayout({
       <CommandPalette
         workspaceSlug={params.workspaceSlug}
         workspaceName={workspace.name}
-        boards={(boards ?? []).map((b) => ({ id: b.id, name: b.name }))}
+        boards={boardList}
       />
     </div>
   );
